@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ============================================================================
+    Project: Veilweave — Myths of the World
+    Author: Gouri Ajith
+    
+    Features:
+    1. Neutral, historical palette: Deep Abyss Blue (#0B0F19), Parchment (#F5F2EB),
+       and Dark Bronze (#4A3F35).
+    2. Seven Sacred Mythological Traditions: Egypt, Greek, Aztec, Norse,
+       West African, Japanese, and Indian.
+    3. Multi-Story Showcase: Multiple authentic legends per culture with
+       dedicated, living animated illustrations in distinct cultural styles.
+    4. Progressive Multi-Level Memory Game (6 -> 12 -> 16 -> 20 tiles) + Quiz.
+    5. Legendary Creature Crosswords: Digital and pen-and-paper printable puzzle
+       themed around global cryptids, deities, and legendary beasts.
+    6. Mythos Spark: Creative story forge & prompt generator.
+    7. Zero-dependency in-browser Web Audio synthesizer.
+    ============================================================================
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Veilweave — Myths of the World</title>
+  
+  <meta name="title" content="Veilweave — Myths of the World">
+  <meta name="description" content="Explore real authentic world myths with moving illustrations across seven sacred traditions, test your memory across expanding tile trials, solve creature crosswords, and forge original story sparks.">
+  <meta name="author" content="Gouri Ajith">
+  <meta name="theme-color" content="#0B0F19">
+
+  <!-- Open Graph Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Veilweave — Myths of the World">
+  <meta property="og:description" content="Authentic world mythologies with living illustrations, crosswords, and creative storytelling.">
+
+  <!-- Embedded SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='4' fill='%230B0F19'/%3E%3Ctext x='12' y='17' font-size='16' text-anchor='middle' fill='%23E5A93B'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Fraunces (Classical Display Serif) and Inter (Clean Body Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-pantheon="egypt">
+
+  <!--
+    ============================================================================
+    SHARED SVG SPRITE SHEET
+    Sacred cultural symbols reused across navigation, games, and illustrations.
+    ============================================================================
+  -->
+  <svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
+    <defs>
+      <!-- Greek: Laurel & Olympian Trident Column -->
+      <symbol id="icon-greek" viewBox="0 0 24 24">
+        <path d="M12 3c-2 3-2 6 0 9M12 3c2 3 2 6 0 9M12 12v9M8 8c-1.5 1-2 2.5-1.5 4M16 8c1.5 1 2 2.5 1.5 4M6 15c-1 1-1 2.5 0 3.5M18 15c1 1 1 2.5 0 3.5"/>
+      </symbol>
+      
+      <!-- Norse: Mjölnir & Yggdrasil Rune Motif -->
+      <symbol id="icon-norse" viewBox="0 0 24 24">
+        <path d="M7 4h10v5H7z"/>
+        <path d="M12 9v11M9 14h6M9 18h6"/>
+      </symbol>
+      
+      <!-- Egyptian: Ankh (Key of Life) -->
+      <symbol id="icon-egyptian" viewBox="0 0 24 24">
+        <circle cx="12" cy="7" r="4"/>
+        <path d="M12 11v10M6 15h12"/>
+      </symbol>
+      
+      <!-- Japanese: Sacred Torii Shrine Gate -->
+      <symbol id="icon-japanese" viewBox="0 0 24 24">
+        <path d="M3 8h18M5 8v13M19 8v13M2 5.5C6 4 18 4 22 5.5"/>
+      </symbol>
+      
+      <!-- Yoruba (West Africa): Anansi Spider & Sacred Sun Glyph -->
+      <symbol id="icon-yoruba" viewBox="0 0 24 24">
+        <path d="M12 12c3 0 5-2 5-5s-2-5-5-2-2 5 1 5 4-2 4-5"/>
+        <circle cx="12" cy="12" r="9" fill="none"/>
+      </symbol>
+      
+      <!-- Aztec: Feathered Serpent & Solar Calendar Glyph -->
+      <symbol id="icon-aztec" viewBox="0 0 24 24">
+        <path d="M3 12l3-3 3 3-3 3zM9 12l3-3 3 3-3 3zM15 12l3-3 3 3-3 3z"/>
+        <circle cx="21" cy="12" r="1.4"/>
+      </symbol>
+
+      <!-- Chinese: Imperial Dragon & Auspicious Cloud Motif -->
+      <symbol id="icon-chinese" viewBox="0 0 24 24">
+        <path d="M4 14c2-4 6-4 10-2s4 4 6 2M7 11c2-3 6-4 9-2M3 17c3-1 6-1 9 1s5 2 8 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="19" cy="8" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="19" cy="8" r="1" fill="currentColor"/>
+      </symbol>
+
+      <!-- Indian: Sacred Chakra & Mandala Lotus Motif -->
+      <symbol id="icon-indian" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/>
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
+      </symbol>
+
+      <!-- Relic Icons for Higher Tile Levels & Crosswords -->
+      <symbol id="icon-eye-horus" viewBox="0 0 24 24">
+        <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/>
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 15v5M9 20h6"/>
+      </symbol>
+
+      <symbol id="icon-mjolnir" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="7" rx="1.5"/>
+        <path d="M12 11v10M10 21h4"/>
+      </symbol>
+
+      <symbol id="icon-laurel" viewBox="0 0 24 24">
+        <path d="M6 19c-2-3-2-7 0-10 1 3 3 5 6 6M18 19c2-3 2-7 0-10-1 3-3 5-6 6"/>
+      </symbol>
+
+      <symbol id="icon-serpent" viewBox="0 0 24 24">
+        <path d="M4 16c2-4 6-4 8-1s6 3 8-1M4 9c2-4 6-4 8-1s6 3 8-1"/>
+      </symbol>
+
+      <symbol id="icon-ankh" viewBox="0 0 24 24">
+        <circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="12" y1="11" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+        <line x1="7" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+
+      <symbol id="icon-trishula" viewBox="0 0 24 24">
+        <path d="M12 2v20M6 5c0 5 6 6 6 6s6-1 6-6M9 8V2M15 8V2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+
+      <symbol id="icon-lotus" viewBox="0 0 24 24">
+        <path d="M12 4c-2 4-4 8-4 12 2 1 6 1 8 0 0-4-2-8-4-12z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M8 16c-3-1-5-4-5-7 3 1 6 4 7 7M16 16c3-1 5-4 5-7-3 1-6 4-7 7" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      </symbol>
+
+      <symbol id="icon-sakura" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 9.5C12 6 9.5 4 12 2c2.5 2 0 4 0 7.5M14.5 12C18 12 20 9.5 22 12c-2 2.5-4 0-7.5 0M12 14.5C12 18 14.5 20 12 22c-2.5-2 0-4 0-7.5M9.5 12C6 12 4 14.5 2 12c2-2.5 4 0 7.5 0" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </symbol>
+
+      <symbol id="icon-scarab" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="13" rx="5" ry="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="12" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <line x1="12" y1="7" x2="12" y2="19" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M7 11L3 9M7 14l-4 1M7 17l-3 3M17 11l4-2M17 14l4 1M17 17l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+
+      <symbol id="icon-helm-awe" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+        <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6M10 4h4M10 20h4M4 10v4M20 10v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+
+      <symbol id="icon-pyramid" viewBox="0 0 24 24">
+        <polygon points="12,3 2,20 22,20" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <line x1="12" y1="3" x2="12" y2="20" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="5" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.5"/>
+      </symbol>
+
+      <symbol id="icon-spider" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="14" rx="4" ry="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="12" cy="7" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M8 12C5 10 3 6 2 5M16 12c3-2 5-6 6-7M8 14c-4 0-6 2-7 5M16 14c4 0 6 2 7 5M9 17c-3 2-4 4-5 5M15 17c3 2 4 4 5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </symbol>
+
+      <symbol id="icon-pegasus" viewBox="0 0 24 24">
+        <path d="M4 17l4-5 5 1 4-7 4 2-3 8-6 1-2 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 13c-2-3-5-5-8-5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      </symbol>
+
+      <symbol id="icon-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="9" y1="3" x2="9" y2="21"/>
+        <line x1="15" y1="3" x2="15" y2="21"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="3" y1="15" x2="21" y2="15"/>
+      </symbol>
+      
+      <symbol id="icon-scroll" viewBox="0 0 24 24">
+        <path d="M6 4h12v3a3 3 0 0 1 0 6v3a3 3 0 0 1-3 3H6a3 3 0 0 1 0-6z"/>
+        <path d="M6 4a3 3 0 0 0 0 6M18 19a3 3 0 0 1-3-3"/>
+      </symbol>
+      
+      <symbol id="icon-dice" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1"/>
+        <circle cx="15.5" cy="8.5" r="1"/>
+        <circle cx="12" cy="12" r="1"/>
+        <circle cx="8.5" cy="15.5" r="1"/>
+        <circle cx="15.5" cy="15.5" r="1"/>
+      </symbol>
+      
+      <symbol id="icon-spark" viewBox="0 0 24 24">
+        <path d="M12 2c.5 3 2.5 5 4 7 2 2.5 2.5 5.5 1 8-1.5 2.5-4 4-7 4s-6-2-6-5c0-4 3.5-7.5 5-10 .5 2 1.5 3 3 3 0-2.5-1-4.5 0-7z"/>
+      </symbol>
+      
+      <symbol id="icon-audio-on" viewBox="0 0 24 24">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      </symbol>
+      
+      <symbol id="icon-audio-off" viewBox="0 0 24 24">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="23" y2="15"/>
+      </symbol>
+
+      <symbol id="icon-chronicle" viewBox="0 0 24 24">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="site-nav" role="banner">
+    <button class="brand" data-tab="home" aria-label="Veilweave Home">
+      <span class="brand-spark">✦</span>
+      <span class="brand-text">Veilweave</span>
+    </button>
+    
+    <nav class="tabs" role="tablist" aria-label="Primary navigation">
+      <button class="tab-link is-active" data-tab="home" role="tab" aria-selected="true" aria-controls="home">Home</button>
+      <button class="tab-link" data-tab="story" role="tab" aria-selected="false" aria-controls="story">Stories</button>
+      <button class="tab-link" data-tab="games" role="tab" aria-selected="false" aria-controls="games">Trial Grounds</button>
+      <button class="tab-link" data-tab="crossword" role="tab" aria-selected="false" aria-controls="crossword">
+        <svg class="nav-spark-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-grid"/></svg>
+        <span>Creature Crosswords</span>
+      </button>
+      <button class="tab-link" data-tab="spark" role="tab" aria-selected="false" aria-controls="spark">
+        <svg class="nav-spark-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-spark"/></svg>
+        <span>Mythos Spark</span>
+      </button>
+    </nav>
+
+    <div class="nav-utils">
+      <!-- Continuous Ambient Soundscape Drone Toggle -->
+      <button id="drone-toggle" class="drone-nav-btn" aria-label="Toggle cultural ambient drone soundscape" title="Play/Pause Ambient Cultural Drone Soundscape">
+        <span class="drone-pulse-dot"></span>
+        <span class="drone-btn-text">Ambient Drone</span>
+      </button>
+
+      <button id="audio-toggle" class="icon-btn" aria-label="Toggle sound effects" title="Toggle audio effects">
+        <svg class="audio-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-audio-off"/></svg>
+        <span class="sound-status-sr sr-only">Sound off</span>
+      </button>
+
+      <div class="fate-counter" id="nav-fate-counter" title="Traditions Explored">
+        <svg class="fate-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chronicle"/></svg>
+        <span id="unlocked-endings-count">0/7 Explored</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <!-- =====================================================================
+         VIEW 1: HOME & HERO
+         ===================================================================== -->
+    <section id="home" class="view is-active" role="tabpanel" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span class="hero-eyebrow">CHRONICLES OF ANCIENT WISDOM • SEVEN SACRED TRADITIONS</span>
+        </div>
+        
+        <h1 id="home-title" class="hero-title">Every Culture Tells<br>stories differently.</h1>
+        
+        <p class="hero-sub">
+          Walk the living chronicles of India, Greece, Egypt, the Norse realm, the Aztec world, China, and Japan.
+          Discover how ancient mythologies gave birth to civilizations, how hearthside folklore preserved human resilience, test your memory across expanding progressive tile trials, solve creature crosswords, and forge original legends.
+        </p>
+
+        <div class="portals">
+          <button class="portal" data-tab="story">
+            <div class="portal-icon-wrap">
+              <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-scroll"/></svg>
+            </div>
+            <span class="portal-label">Stories</span>
+            <span class="portal-sub">7 Civilizations • History & Living Lore</span>
+            <span class="portal-arrow">Explore Chronicles →</span>
+          </button>
+          
+          <button class="portal" data-tab="games">
+            <div class="portal-icon-wrap">
+              <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-dice"/></svg>
+            </div>
+            <span class="portal-label">Trial Grounds</span>
+            <span class="portal-sub">Multi-Level Match • Riddle Trials</span>
+            <span class="portal-arrow">Conquer Trials →</span>
+          </button>
+
+          <button class="portal" data-tab="crossword">
+            <div class="portal-icon-wrap">
+              <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-grid"/></svg>
+            </div>
+            <span class="portal-label">Creature Crosswords</span>
+            <span class="portal-sub">Digital & Printable Mythic Puzzles</span>
+            <span class="portal-arrow">Solve Puzzles →</span>
+          </button>
+
+          <button class="portal" data-tab="spark">
+            <div class="portal-icon-wrap">
+              <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-spark"/></svg>
+            </div>
+            <span class="portal-label">Mythos Spark</span>
+            <span class="portal-sub">Creative Story Forge & Prompts</span>
+            <span class="portal-arrow">Ignite Legend →</span>
+          </button>
+        </div>
+
+        <!-- ===================================================================
+             EDUCATIONAL SHOWCASE: WHAT MYTHOLOGY AND FOLKLORE MEAN
+             =================================================================== -->
+        <section class="lore-education-section" aria-label="Understanding Mythology and Folklore">
+          <div class="lore-edu-header">
+            <div class="hero-badge">
+              <span class="badge-dot"></span>
+              <span class="hero-eyebrow">THE ARCHITECTURE OF HUMAN MEMORY</span>
+            </div>
+            <h2 class="lore-edu-title">Mythology & Folklore: The Sacred & The Living</h2>
+            <p class="lore-edu-sub">
+              Every ancient civilization preserves two complementary mirrors: one turned toward the heavens to explain cosmic order, and one turned toward the hearth to guide daily mortal survival.
+            </p>
+          </div>
+
+          <div class="lore-edu-grid">
+            <!-- Card 1: What is Mythology? -->
+            <article class="lore-edu-card edu-card-mythology">
+              <div class="lore-edu-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-spark"/></svg>
+              </div>
+              <span class="lore-edu-tag">Cosmic Architecture</span>
+              <h3 class="lore-edu-card-title">What is Mythology?</h3>
+              <p class="lore-edu-desc">
+                <strong>Mythology</strong> comprises the sacred, foundational grand narratives of a culture. These are majestic accounts of primordial creation, the dawn of the universe, divine pantheons, metaphysical cosmic order, and the spiritual laws governing life, death, and time.
+              </p>
+              <ul class="lore-edu-points">
+                <li>✦ <strong>Cosmic Origins:</strong> Explains how order was forged from primordial waters or cosmic eggs (Pangu, Nun, Ginnungagap, Kshira Sagara).</li>
+                <li>✦ <strong>Divine Law & Dharma:</strong> Establishes supreme truth, cosmic righteousness (Ma'at, Tianming), and the relationship between gods and mortals.</li>
+                <li>✦ <strong>Existential Meaning:</strong> Directly addresses the deepest metaphysical questions: why we exist, the nature of suffering, and the soul's journey beyond death.</li>
+              </ul>
+            </article>
+
+            <!-- Card 2: What is Folklore? -->
+            <article class="lore-edu-card edu-card-folklore">
+              <div class="lore-edu-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-scroll"/></svg>
+              </div>
+              <span class="lore-edu-tag">Hearthside Living Soul</span>
+              <h3 class="lore-edu-card-title">What is Folklore?</h3>
+              <p class="lore-edu-desc">
+                <strong>Folklore</strong> is the living, evolving heartbeat of ordinary people. Passed down through generations by spoken word, folklore encompasses village tales, cautionary legends, moral parables, animal fables, regional cryptids, and communal customs.
+              </p>
+              <ul class="lore-edu-points">
+                <li>✦ <strong>Human-Scale Resilience:</strong> Celebrates the quick wit and courage of everyday mortals, tricksters, and woodcutters overcoming impossible odds.</li>
+                <li>✦ <strong>Community Ethics:</strong> Imparts timeless moral guidance regarding hospitality, honesty, familial loyalty, and reverence for nature.</li>
+                <li>✦ <strong>Sacred Topography:</strong> Connects local rivers, ancient trees, and solitary peaks to ancestral spirits, shaping regional folklore.</li>
+              </ul>
+            </article>
+
+            <!-- Card 3: The Intertwined Tapestry -->
+            <article class="lore-edu-card edu-card-synthesis">
+              <div class="lore-edu-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chronicle"/></svg>
+              </div>
+              <span class="lore-edu-tag">Historical Tapestry</span>
+              <h3 class="lore-edu-card-title">How History & Lore Intertwine</h3>
+              <p class="lore-edu-desc">
+                While <em>mythology</em> provides the celestial ceiling under which a society organizes its laws and temples, <em>folklore</em> provides the deep roots that nourish the human spirit through war, famine, and peace.
+              </p>
+              <ul class="lore-edu-points">
+                <li>✦ <strong>Myth Becomes History:</strong> Real historical dynasties, catastrophic floods, and celestial astronomical events crystallize into immortal legends.</li>
+                <li>✦ <strong>Folklore Outlasts Empires:</strong> Even when grand stone temples fall into ruin, fireside stories and songs keep a civilization's soul alive across millennia.</li>
+                <li>✦ <strong>Different Voices, Shared Truths:</strong> Every culture tells stories differently—yet all explore courage, selfless love, justice, and the search for light.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         VIEW 2: STORIES (7 SACRED TRADITIONS & HOW LORE CAME TO BE)
+         ===================================================================== -->
+    <section id="story" class="view" role="tabpanel" aria-label="Stories">
+      <div class="stories-container">
+        <div class="stories-header">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="hero-eyebrow">CHRONICLES OF CIVILIZATION</span>
+          </div>
+          <h2 class="stories-title">Stories of Ancient Civilizations</h2>
+          <p class="stories-sub">
+            Discover the history of seven sacred civilizations, how their mythology and folklore came to be, and the living narratives that shaped their cultural soul.
+          </p>
+        </div>
+
+        <!-- 7 Culture Navigation Tabs -->
+        <div class="culture-nav-bar" role="tablist" aria-label="Select mythology">
+          <button class="culture-tab is-active" data-culture="indian" role="tab" aria-selected="true">
+            <svg viewBox="0 0 24 24"><use href="#icon-indian"/></svg>
+            <span>Indian</span>
+          </button>
+          <button class="culture-tab" data-culture="greek" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24"><use href="#icon-greek"/></svg>
+            <span>Greek</span>
+          </button>
+          <button class="culture-tab" data-culture="egyptian" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24"><use href="#icon-egyptian"/></svg>
+            <span>Egyptian</span>
+          </button>
+          <button class="culture-tab" data-culture="norse" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24"><use href="#icon-norse"/></svg>
+            <span>Norse</span>
+          </button>
+          <button class="culture-tab" data-culture="aztec" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24"><use href="#icon-aztec"/></svg>
+            <span>Aztec</span>
+          </button>
+          <button class="culture-tab" data-culture="chinese" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24"><use href="#icon-chinese"/></svg>
+            <span>Chinese</span>
+          </button>
+          <button class="culture-tab" data-culture="japanese" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24"><use href="#icon-japanese"/></svg>
+            <span>Japanese</span>
+          </button>
+        </div>
+
+        <!-- Story Sub-Selector Bar (Select between stories for this culture) -->
+        <div class="story-subnav-bar" id="story-subnav-bar" role="tablist" aria-label="Select story within mythology">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Main Story Showcase Stage -->
+        <article class="story-showcase glow-indian" id="story-showcase-container">
+          <!-- Visual Showcase Controls & Stage -->
+          <div class="story-visual-container">
+            <!-- Animated Moving Cultural Motif Stage -->
+            <div class="illustration-stage" id="illustration-stage" aria-label="Authentic cultural motif artwork">
+              <!-- Dynamically populated by script.js with authentic cultural animated illustrations -->
+            </div>
+          </div>
+
+          <!-- Story Text Content -->
+          <div class="story-content-wrap">
+            <header class="story-meta-header">
+              <div>
+                <div class="story-meta-tags">
+                  <span class="story-region-badge" id="story-culture-tag">Indian • Marigold & Sacred Churning</span>
+                  <span class="story-read-time" id="story-read-time">✦ 4 min read</span>
+                </div>
+                <h3 class="story-main-title" id="story-headline">The Cosmic Dawn</h3>
+              </div>
+              <div class="story-actions-toolbar">
+                <button type="button" id="btn-open-story-modal" class="story-modal-open-btn" aria-label="Open story in full reading modal">
+                  <span>📖 Expand Reading Mode</span>
+                </button>
+              </div>
+            </header>
+
+            <!-- Dramatic Pullquote Block -->
+            <blockquote class="story-pullquote" id="story-pullquote">
+              "When the venom of existence threatened all creation, the Great Ascetic held the poison in his throat that the worlds might breathe."
+            </blockquote>
+
+            <div class="story-text-body" id="story-full-text">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+
+            <div class="lore-insights-grid" id="story-insights-grid">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+        </article>
+
+        <!-- Relic Showcase: The Sacred Treasury (3D Artifact Relic Museum) -->
+        <section class="relic-treasury-section" id="relic-treasury" aria-label="Mythic Artifact Relic Museum">
+          <div class="relic-treasury-header">
+            <div class="hero-badge">
+              <span class="badge-dot"></span>
+              <span class="hero-eyebrow">THE SACRED TREASURY • INTERACTIVE 3D RELIC MUSEUM</span>
+            </div>
+            <h3 class="relic-treasury-title">Sacred Regalia & Mythic Relics</h3>
+            <p class="relic-treasury-sub">
+              Hover, drag, or touch to tilt each sacred artifact in real-time 3D perspective. Select any relic to inspect its authentic archaeological history, symbolic powers, and hear its traditional sonic resonance.
+            </p>
+          </div>
+
+          <!-- 3D Relic Grid -->
+          <div class="relic-grid" id="relic-grid">
+            <!-- Rendered dynamically by RelicMuseum in script.js -->
+          </div>
+
+          <!-- Relic Inspector Detailed View -->
+          <div class="relic-inspector-card is-hidden" id="relic-inspector-card" aria-live="polite">
+            <div class="relic-insp-inner" id="relic-insp-inner">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         VIEW 3: TRIAL GROUNDS (MULTI-LEVEL PROGRESSIVE MATCH & QUIZ)
+         ===================================================================== -->
+    <section id="games" class="view" role="tabpanel" aria-label="Trial Grounds">
+      <div class="games-sub-nav" role="tablist" aria-label="Mini-game selector">
+        <button class="pill-link is-active" data-game="match" role="tab" aria-selected="true" aria-controls="game-match">
+          ✦ Pantheon Match (Multi-Level)
+        </button>
+        <button class="pill-link" data-game="quiz" role="tab" aria-selected="false" aria-controls="game-quiz">
+          ✦ Riddle Trials (Quiz)
+        </button>
+      </div>
+
+      <!-- Progressive Memory Match Game -->
+      <div class="game-panel is-active" id="game-match" role="tabpanel" aria-label="Pantheon Match Progressive Levels">
+        <div class="game-head">
+          <div>
+            <h2 class="panel-heading">Pantheon Match: Progressive Trials</h2>
+            <p class="panel-sub">Tiles expand with every round across 10 progressive levels: 6 → 8 → 12 → 16 → 20 → 24 → 28 → 30 → 32 → 36 tiles.</p>
+          </div>
+          <div class="game-stats">
+            <div class="stat-level-pill" id="match-level-indicator">Level 1 / 10 (6 Tiles)</div>
+            <div class="stat-pill">Moves: <strong id="match-moves">0</strong></div>
+            <div class="stat-pill">Time: <strong id="match-timer">0:00</strong></div>
+            <div class="stat-pill">Score: <strong id="match-score">0</strong></div>
+            <button class="mini-btn" id="match-restart" aria-label="Restart current level">Restart</button>
+          </div>
+        </div>
+
+        <div class="match-level-tracker">
+          <span style="font-size:0.86rem;color:var(--text-muted);">Current Round Progress (10 Levels):</span>
+          <div class="match-level-dots">
+            <button type="button" class="level-dot is-active" data-lvl="1" aria-label="Level 1">1</button>
+            <button type="button" class="level-dot" data-lvl="2" aria-label="Level 2">2</button>
+            <button type="button" class="level-dot" data-lvl="3" aria-label="Level 3">3</button>
+            <button type="button" class="level-dot" data-lvl="4" aria-label="Level 4">4</button>
+            <button type="button" class="level-dot" data-lvl="5" aria-label="Level 5">5</button>
+            <button type="button" class="level-dot" data-lvl="6" aria-label="Level 6">6</button>
+            <button type="button" class="level-dot" data-lvl="7" aria-label="Level 7">7</button>
+            <button type="button" class="level-dot" data-lvl="8" aria-label="Level 8">8</button>
+            <button type="button" class="level-dot" data-lvl="9" aria-label="Level 9">9</button>
+            <button type="button" class="level-dot" data-lvl="10" aria-label="Level 10">10</button>
+          </div>
+        </div>
+
+        <div class="match-grid cols-3" id="match-grid" role="grid" aria-label="Memory tile grid">
+          <!-- Cards populated by JS -->
+        </div>
+
+        <div class="win-banner" id="match-win" hidden aria-live="polite"></div>
+      </div>
+
+      <!-- Riddle Trials (Trivia Quiz) -->
+      <div class="game-panel" id="game-quiz" role="tabpanel" aria-label="Riddle Trials Quiz">
+        <div class="game-head">
+          <div>
+            <h2 class="panel-heading">Riddle Trials</h2>
+            <p class="panel-sub">Answer ancient mythological riddles against a 15-second countdown bar.</p>
+          </div>
+          <div class="game-stats">
+            <span class="stat-pill" id="quiz-progress">Question 1 / 10</span>
+            <div class="stat-pill">Score: <strong id="quiz-score">0</strong></div>
+            <div class="stat-pill">Record: <strong id="quiz-record">—</strong></div>
+          </div>
+        </div>
+
+        <div class="quiz-timer-track" role="progressbar" aria-label="Question timer">
+          <div class="quiz-timer-fill" id="quiz-timer-fill"></div>
+        </div>
+
+        <div class="quiz-body" id="quiz-body"></div>
+        <div class="quiz-result" id="quiz-result" hidden aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         VIEW 4: LEGENDARY CREATURE CROSSWORDS (5 INCREASING DIFFICULTY LEVELS)
+         ===================================================================== -->
+    <section id="crossword" class="view" role="tabpanel" aria-label="Legendary Creature Crosswords">
+      <div class="crossword-container">
+        <!-- Print-only header visible when printed -->
+        <div class="print-only-header">
+          <h1 id="print-cw-title">Veilweave — Legendary Creature Crosswords</h1>
+          <p id="print-cw-meta">Difficulty: Level 1 • Name: ____________________ Date: ________ Score: _____</p>
+        </div>
+
+        <div class="crossword-header">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="hero-eyebrow">DIGITAL & PRINTABLE ACTIVITY • 5 PROGRESSIVE LEVELS & 3 DEDICATED 10×10 EXPEDITIONS</span>
+          </div>
+          <h2 class="crossword-title">Legendary Creature Crosswords</h2>
+          <p class="crossword-sub">
+            Solve five progressive difficulty puzzles plus three dedicated 10×10 cultural expedition grids themed around global cryptids, deities, and legendary beasts. Play interactively with letter reveal hints, or print out a pen-and-paper worksheet.
+          </p>
+        </div>
+
+        <!-- Crossword Difficulty & Expedition Navigation -->
+        <div class="crossword-level-nav" role="tablist" aria-label="Select Crossword Difficulty Level or Cultural Expedition">
+          <button type="button" class="cw-level-tab is-active" data-cw-lvl="1" role="tab" aria-selected="true">
+            <span class="cw-tab-lvl">Level 1</span>
+            <span class="cw-tab-title">Novice Cryptids</span>
+            <span class="cw-tab-stars">★☆☆☆☆</span>
+          </button>
+          <button type="button" class="cw-level-tab" data-cw-lvl="2" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Level 2</span>
+            <span class="cw-tab-title">Adept Beastmaster</span>
+            <span class="cw-tab-stars">★★☆☆☆</span>
+          </button>
+          <button type="button" class="cw-level-tab" data-cw-lvl="3" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Level 3</span>
+            <span class="cw-tab-title">Mythic Chimera</span>
+            <span class="cw-tab-stars">★★★☆☆</span>
+          </button>
+          <button type="button" class="cw-level-tab" data-cw-lvl="4" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Level 4</span>
+            <span class="cw-tab-title">Ancient Archons</span>
+            <span class="cw-tab-stars">★★★★☆</span>
+          </button>
+          <button type="button" class="cw-level-tab" data-cw-lvl="5" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Level 5</span>
+            <span class="cw-tab-title">Primeval Titans</span>
+            <span class="cw-tab-stars">★★★★★</span>
+          </button>
+          <button type="button" class="cw-level-tab cw-tab-expedition" data-cw-lvl="wa_10x10" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Expedition</span>
+            <span class="cw-tab-title">West African 10×10</span>
+            <span class="cw-tab-stars">✦ West Africa</span>
+          </button>
+          <button type="button" class="cw-level-tab cw-tab-expedition" data-cw-lvl="az_10x10" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Expedition</span>
+            <span class="cw-tab-title">Aztec Sun 10×10</span>
+            <span class="cw-tab-stars">✦ Aztec</span>
+          </button>
+          <button type="button" class="cw-level-tab cw-tab-expedition" data-cw-lvl="in_10x10" role="tab" aria-selected="false">
+            <span class="cw-tab-lvl">Expedition</span>
+            <span class="cw-tab-title">Vedic Cosmic 10×10</span>
+            <span class="cw-tab-stars">✦ Indian</span>
+          </button>
+        </div>
+
+        <!-- Crossword Active Level Metadata Card -->
+        <div class="crossword-meta-card">
+          <div class="cw-meta-info">
+            <h3 class="cw-meta-title" id="cw-active-title">Level 1: Novice Cryptids</h3>
+            <p class="cw-meta-sub" id="cw-active-sub">Famous Guardians & Primordial Entities</p>
+          </div>
+          <div class="cw-meta-badges">
+            <span class="cw-badge" id="cw-badge-diff">Difficulty: Initiate (★☆☆☆☆)</span>
+            <span class="cw-badge" id="cw-badge-words">6 Interconnected Words</span>
+            <span class="cw-badge cw-badge-traditions" id="cw-badge-traditions">Egyptian • Greek • Indian</span>
+          </div>
+        </div>
+
+        <!-- Crossword Toolbar -->
+        <div class="crossword-toolbar">
+          <div class="crossword-tools-left">
+            <button class="mini-btn" id="btn-cw-reveal-letter" title="Reveal letter in active tile">Reveal Letter</button>
+            <button class="mini-btn" id="btn-cw-check-word">Check Word</button>
+            <button class="mini-btn" id="btn-cw-reveal-word">Reveal Word</button>
+            <button class="mini-btn" id="btn-cw-check-all">Check Entire Puzzle</button>
+            <button class="mini-btn" id="btn-cw-clear">Clear Grid</button>
+            <button class="mini-btn" id="btn-cw-prev-lvl" title="Previous Difficulty Level">← Prev Level</button>
+            <button class="mini-btn" id="btn-cw-next-lvl" title="Next Difficulty Level">Next Level →</button>
+          </div>
+          <div class="crossword-tools-right">
+            <button class="spark-btn-primary" id="btn-cw-print" style="padding:8px 18px;font-size:0.88rem;">
+              <span>🖨️ Print Pen-and-Paper Worksheet</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Split Layout: Grid on Left, Clues on Right -->
+        <div class="crossword-split-layout">
+          <!-- Crossword Matrix Board -->
+          <div class="crossword-board-wrap">
+            <div class="crossword-grid" id="crossword-grid-board" role="grid" aria-label="Crossword matrix">
+              <!-- 15x12 grid generated dynamically by JS -->
+            </div>
+            <div id="crossword-status-banner" style="margin-top:14px;font-size:0.92rem;color:var(--pantheon-accent);" aria-live="polite"></div>
+          </div>
+
+          <!-- Clue Panels -->
+          <div class="crossword-clues-wrap">
+            <!-- Across Clues -->
+            <div class="clue-column">
+              <h3 class="clue-col-title">Across</h3>
+              <div class="clues-list" id="across-clues-list">
+                <!-- Injected by script.js -->
+              </div>
+            </div>
+
+            <!-- Down Clues -->
+            <div class="clue-column">
+              <h3 class="clue-col-title">Down</h3>
+              <div class="clues-list" id="down-clues-list">
+                <!-- Injected by script.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         VIEW 5: MYTHOS SPARK (CREATIVE STORY FORGE)
+         ===================================================================== -->
+    <section id="spark" class="view" role="tabpanel" aria-label="Mythos Spark Story Forge">
+      <div class="spark-container">
+        <div class="spark-header">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="hero-eyebrow">CREATIVE STORY FORGE</span>
+          </div>
+          <h2 class="spark-title">Ignite Your Mythic Imagination</h2>
+          <p class="spark-sub">
+            Combine archetypes, ancient elements, and cosmic dilemmas to forge original mythological concepts and creative writing prompts.
+          </p>
+        </div>
+
+        <div class="spark-forge-card">
+          <div class="forge-selectors">
+            <div class="forge-group">
+              <label for="select-archetype" class="forge-label">1. Divine Archetype</label>
+              <select id="select-archetype" class="forge-select">
+                <option value="trickster">The Cunning Trickster</option>
+                <option value="sunbearer">The Reluctant Sunbearer</option>
+                <option value="weaver">The Weaver of Fates</option>
+                <option value="shadow">The Shadow Guide of Souls</option>
+                <option value="smith">The Celestial Blacksmith</option>
+                <option value="wanderer">The Ageless Wanderer</option>
+              </select>
+            </div>
+
+            <div class="forge-group">
+              <label for="select-element" class="forge-label">2. Primordial Element</label>
+              <select id="select-element" class="forge-select">
+                <option value="flame">Living Celestial Ember</option>
+                <option value="roots">Roots of the World Tree</option>
+                <option value="abyss">The Singing Abyssal Tide</option>
+                <option value="stardust">Bone Dust & Starlight</option>
+                <option value="mirror">The Obsidian Mirror</option>
+                <option value="storm">Thunder of the Forgotten Peak</option>
+              </select>
+            </div>
+
+            <div class="forge-group">
+              <label for="select-conflict" class="forge-label">3. Cosmic Dilemma</label>
+              <select id="select-conflict" class="forge-select">
+                <option value="steal_fire">Stealing fire to save mortals from endless winter</option>
+                <option value="broken_scale">The sacred scale of truth has cracked</option>
+                <option value="lost_sun">The sun was swallowed by a celestial beast</option>
+                <option value="curse_truth">Every spoken truth burns the teller's tongue</option>
+                <option value="final_thread">The last thread of mortal destiny is slipping</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="forge-actions">
+            <button id="btn-forge-spark" class="spark-btn-primary">
+              <svg class="nav-spark-icon" viewBox="0 0 24 24"><use href="#icon-spark"/></svg>
+              <span>⚡ Ignite Mythos Spark</span>
+            </button>
+            <button id="btn-random-spark" class="spark-btn-secondary">
+              <span>🎲 Shuffle Elements</span>
+            </button>
+          </div>
+
+          <div class="forge-output" id="forge-output" aria-live="polite">
+            <div class="forge-result-card" id="forge-result-card">
+              <span class="forge-tag" id="spark-tag">Mythic Concept</span>
+              <h3 class="forge-result-title" id="spark-title">The Ember Thief of the World Tree</h3>
+              <p class="forge-result-lore" id="spark-lore">
+                Before time was counted in seasons, The Cunning Trickster stole Living Celestial Ember from the highest branches of the world.
+              </p>
+              <div class="forge-result-prompt-wrap">
+                <span class="prompt-badge">Creative Writing Prompt</span>
+                <p class="forge-result-prompt" id="spark-prompt">
+                  Write the moment your protagonist is confronted by the guardian spirits.
+                </p>
+              </div>
+              <div class="forge-card-footer">
+                <button id="btn-copy-prompt" class="mini-btn">
+                  <span id="copy-btn-text">📋 Copy Story Prompt</span>
+                </button>
+                <button id="btn-save-spark" class="mini-btn">
+                  <span id="save-btn-text">💾 Save to My Codex</span>
+                </button>
+                <button id="btn-spark-share" class="mini-btn" title="Share via Web Share API or copy link">
+                  <span>🔗 Share Legend</span>
+                </button>
+                <button id="btn-spark-pdf" class="mini-btn" title="Generate stylized printable PDF Myth Card">
+                  <span>📄 Print / PDF Card</span>
+                </button>
+                <button id="btn-start-vignette" class="mini-btn spark-btn-vignette" title="Enter interactive choice-based narrative quest">
+                  <span>⚔️ Test Your Fate (Interactive Quest)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Choice-Based Short Story Vignette (Mini RPG Mode) -->
+            <div class="vignette-quest-container is-hidden" id="vignette-quest-container" aria-live="polite">
+              <div class="vignette-quest-header">
+                <div class="hero-badge">
+                  <span class="badge-dot"></span>
+                  <span class="hero-eyebrow">INTERACTIVE MYTHIC QUEST • 3-STAGE DESTINY</span>
+                </div>
+                <h3 class="vignette-quest-title" id="vignette-quest-title">The Path of Cosmic Trial</h3>
+                <div class="vignette-progress-bar">
+                  <div class="vignette-progress-step is-active" id="vstep-1">1. The Threshold</div>
+                  <div class="vignette-progress-step" id="vstep-2">2. The Crucible</div>
+                  <div class="vignette-progress-step" id="vstep-3">3. The Epilogue</div>
+                </div>
+              </div>
+              <div class="vignette-stage-body" id="vignette-stage-body">
+                <!-- Dynamically populated by MythicVignetteEngine in script.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="saved-sparks-section">
+          <div class="saved-header">
+            <h3>✦ Your Codex of Created Sparks</h3>
+            <div class="codex-export-group">
+              <button id="btn-export-pdf" class="mini-btn" title="Print all saved sparks as stylized PDF Myth Cards">📄 Export PDF Cards</button>
+              <button id="btn-export-json" class="mini-btn" title="Download Codex as structured JSON file">💾 Export JSON</button>
+              <button id="btn-export-txt" class="mini-btn" title="Download Codex as formatted Text file">📝 Export TXT</button>
+              <button id="btn-clear-sparks" class="mini-btn">Clear All</button>
+            </div>
+          </div>
+          <div id="saved-sparks-list" class="saved-sparks-grid">
+            <p class="no-sparks-notice">No saved sparks yet. Ignite your first legend above!</p>
+          </div>
+        </div>
+
+        <!-- Hidden printable container for Stylized PDF Myth Cards -->
+        <div id="printable-myth-card" class="printable-myth-card-container" aria-hidden="true"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       INTERACTIVE STORY READING MODAL
+       =================================================================== -->
+  <div id="story-modal" class="story-modal-backdrop is-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-story-title">
+    <div class="story-modal-dialog">
+      <header class="modal-header">
+        <div class="modal-tags">
+          <span class="story-region-badge" id="modal-culture-tag">Egypt • Sun Gods & The Nile</span>
+          <span class="story-read-time" id="modal-read-time">✦ 3 min read</span>
+        </div>
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close story reader">✕</button>
+      </header>
+
+      <div class="modal-body">
+        <div class="modal-title-row">
+          <h2 id="modal-story-title" class="modal-title">The Osiris Myth</h2>
+        </div>
+
+        <blockquote class="story-pullquote" id="modal-pullquote"></blockquote>
+
+        <div class="story-text-body modal-story-text" id="modal-story-text"></div>
+
+        <div class="lore-insights-grid" id="modal-insights-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+      <p class="footer-brand"><strong>Veilweave</strong> — Myths of the World</p>
+      <p style="margin:0;color:var(--text-muted);">Exploring the Living Tapestry of Seven Global Mythological Traditions.</p>
+      <p class="footer-credit" style="margin-top:4px;">Crafted by <strong>Gouri Ajith</strong></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
