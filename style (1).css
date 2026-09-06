@@ -1,0 +1,3534 @@
+/*
+  ============================================================================
+  Project: Veilweave — Myths of the World
+  Author: Gouri Ajith
+  Stylesheet: Design System, Regional Palettes, Animated Art & Crosswords
+  ============================================================================
+*/
+
+/* ==========================================================================
+   1. UNIVERSAL DESIGN TOKENS & NEUTRAL HISTORICAL PALETTE
+   ========================================================================== */
+:root {
+  /* Universal Backgrounds: Deep Abyss Blue & Charcoal Slate */
+  --bg-primary: #0B0F19;              /* Deep Abyss Blue (cosmos, night sky) */
+  --bg-surface: #121726;              /* Universal card surface */
+  --bg-surface-elevated: #1A2035;     /* Elevated interactive surfaces */
+  --bg-surface-subtle: rgba(18, 23, 38, 0.75);
+  --bg-nav: rgba(11, 15, 25, 0.94);
+
+  /* Universal Text: Parchment / Bone */
+  --text-universal: #F5F2EB;          /* Soft parchment / bone scroll */
+  --text-muted: #A8A398;              /* Muted text */
+  --text-dim: #787368;                /* Captions & footnotes */
+
+  /* Muted Borders & Accents: Dark Bronze / Patina */
+  --border-patina: #4A3F35;           /* Aged bronze archaeological structure */
+  --border-patina-light: rgba(74, 63, 53, 0.45);
+  --border-patina-bright: #7A6959;
+
+  /* Default Active Dynamic Variables */
+  --pantheon-accent: #E5A93B;
+  --pantheon-secondary: #1A4B83;
+  --pantheon-tertiary: #111111;
+  --pantheon-glow: rgba(229, 169, 59, 0.35);
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Shadows & Transitions */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 26px rgba(0, 0, 0, 0.55);
+  --transition-fast: 0.18s ease;
+  --transition-med: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ==========================================================================
+   2. REGION-SPECIFIC CULTURALLY ACCURATE PALETTES
+   ========================================================================== */
+
+/* ==========================================================================
+   2. CULTURAL THEME MATRIX & REGION-SPECIFIC PALETTES
+   Dynamically applies --primary-color, --secondary-color, --border-style, --bg-pattern
+   ========================================================================== */
+
+:root {
+  --primary-color: #FF9933;
+  --secondary-color: #800020;
+  --border-style: solid;
+  --bg-pattern: radial-gradient(circle at 50% 50%, rgba(255, 153, 51, 0.12) 0%, rgba(128, 0, 32, 0.05) 60%, transparent 100%);
+}
+
+/* INDIAN: #FF9933 (Marigold), #800020 (Crimson) | Mandala SVG background rotate, Glowing Diya effect */
+[data-pantheon="indian"], .glow-indian {
+  --primary-color: #FF9933;
+  --secondary-color: #800020;
+  --border-style: solid;
+  --bg-pattern: radial-gradient(circle at 50% 50%, rgba(255, 153, 51, 0.15) 0%, rgba(128, 0, 32, 0.08) 60%, transparent 100%);
+  --pantheon-primary: #FF9933;
+  --pantheon-secondary: #800020;
+  --pantheon-tertiary: #E5A823;
+  --pantheon-quaternary: #F5F2EB;
+  --pantheon-accent: #FF9933;
+  --pantheon-glow: rgba(255, 153, 51, 0.45);
+}
+
+/* GREEK: #002366 (Aegean), #F5F5DC (Parian Marble) | Fluted pillar CSS borders, subtle wave pulse */
+[data-pantheon="greek"], .glow-greek {
+  --primary-color: #002366;
+  --secondary-color: #F5F5DC;
+  --border-style: double;
+  --bg-pattern: linear-gradient(135deg, rgba(0, 35, 102, 0.22) 0%, rgba(245, 245, 220, 0.08) 50%, transparent 100%);
+  --pantheon-primary: #002366;
+  --pantheon-secondary: #F5F5DC;
+  --pantheon-tertiary: #D4AF37;
+  --pantheon-quaternary: #2D5A27;
+  --pantheon-accent: #F5F5DC;
+  --pantheon-glow: rgba(0, 35, 102, 0.45);
+}
+
+/* NORSE: #008080 (Glacial Teal), #1C2833 (Slate) | Rune shimmer effects, CSS snow particle overlay */
+[data-pantheon="norse"], .glow-norse {
+  --primary-color: #008080;
+  --secondary-color: #1C2833;
+  --border-style: groove;
+  --bg-pattern: radial-gradient(ellipse at top, rgba(0, 128, 128, 0.22) 0%, rgba(28, 40, 51, 0.9) 100%);
+  --pantheon-primary: #008080;
+  --pantheon-secondary: #1C2833;
+  --pantheon-tertiary: #00E5FF;
+  --pantheon-quaternary: #8E9AAF;
+  --pantheon-accent: #008080;
+  --pantheon-glow: rgba(0, 128, 128, 0.45);
+}
+
+/* EGYPTIAN: #E5A823 (Pyramid Gold), #00A896 (Lapis) | Hieroglyphic border SVG pattern, golden pulse */
+[data-pantheon="egyptian"], [data-pantheon="egypt"], .glow-egyptian, .glow-egypt {
+  --primary-color: #E5A823;
+  --secondary-color: #00A896;
+  --border-style: outset;
+  --bg-pattern: linear-gradient(45deg, rgba(229, 168, 35, 0.2) 0%, rgba(0, 168, 150, 0.12) 100%);
+  --pantheon-primary: #E5A823;
+  --pantheon-secondary: #00A896;
+  --pantheon-tertiary: #B81D24;
+  --pantheon-quaternary: #F5F2EB;
+  --pantheon-accent: #E5A823;
+  --pantheon-glow: rgba(229, 168, 35, 0.45);
+}
+
+/* AZTEC: #00A86B (Jade), #2C3E50 (Obsidian) | Stepped-pyramid SVG frame, geometric line glow */
+[data-pantheon="aztec"], .glow-aztec {
+  --primary-color: #00A86B;
+  --secondary-color: #2C3E50;
+  --border-style: ridge;
+  --bg-pattern: radial-gradient(circle at top right, rgba(0, 168, 107, 0.2) 0%, rgba(44, 62, 80, 0.85) 100%);
+  --pantheon-primary: #00A86B;
+  --pantheon-secondary: #2C3E50;
+  --pantheon-tertiary: #C0392B;
+  --pantheon-quaternary: #F39C12;
+  --pantheon-accent: #00A86B;
+  --pantheon-glow: rgba(0, 168, 107, 0.45);
+}
+
+/* JAPANESE: #FFB7C5 (Sakura), #111111 (Sumi Ink) | Sakura petal particle drift, brush-stroke borders */
+[data-pantheon="japanese"], .glow-japanese {
+  --primary-color: #FFB7C5;
+  --secondary-color: #111111;
+  --border-style: solid;
+  --bg-pattern: radial-gradient(circle at center, rgba(255, 183, 197, 0.18) 0%, rgba(17, 17, 17, 0.95) 100%);
+  --pantheon-primary: #FFB7C5;
+  --pantheon-secondary: #111111;
+  --pantheon-tertiary: #D63031;
+  --pantheon-quaternary: #27AE60;
+  --pantheon-accent: #FFB7C5;
+  --pantheon-glow: rgba(255, 183, 197, 0.45);
+}
+
+/* CHINESE: #D90429 (Vermilion), #00A86B (Imperial Jade) | Scroll unfold animation, cloud/dragon SVG accents */
+[data-pantheon="chinese"], .glow-chinese {
+  --primary-color: #D90429;
+  --secondary-color: #00A86B;
+  --border-style: inset;
+  --bg-pattern: radial-gradient(ellipse at bottom, rgba(217, 4, 41, 0.22) 0%, rgba(0, 168, 107, 0.1) 70%, transparent 100%);
+  --pantheon-primary: #D90429;
+  --pantheon-secondary: #00A86B;
+  --pantheon-tertiary: #E5A823;
+  --pantheon-quaternary: #F5F2EB;
+  --pantheon-accent: #D90429;
+  --pantheon-glow: rgba(217, 4, 41, 0.45);
+}
+
+/* Seamless Pantheon Switching Transitions */
+body, 
+.story-showcase, 
+.site-nav, 
+.pantheon-card, 
+.narration-btn, 
+.mini-btn, 
+.spark-btn-primary, 
+.tab-link, 
+.hero-badge, 
+.story-region-badge,
+.relic-card,
+.vignette-rpg-card {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
+}
+
+/* ==========================================================================
+   3. BASE RESET & ACCESSIBILITY
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-universal);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-med);
+}
+
+:focus-visible {
+  outline: 2px solid var(--pantheon-accent);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-universal);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+svg[class*="icon"] {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#icon-norse, #icon-japanese, #icon-dice, #icon-spark, #icon-chronicle, #icon-grid, #icon-mjolnir, #icon-eye-horus, #icon-laurel, #icon-serpent, #icon-indian {
+  fill: currentColor;
+  stroke: none;
+}
+
+#icon-egyptian circle {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Background Canvas */
+#hero-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 15%, #141A2E 0%, #0B0F19 75%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   4. NAVIGATION BAR
+   ========================================================================== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 36px;
+  background: var(--bg-nav);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-patina);
+  box-shadow: var(--shadow-sm);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  color: var(--text-universal);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
+}
+
+.brand:hover {
+  color: var(--pantheon-accent);
+}
+
+.brand-spark {
+  color: var(--pantheon-accent);
+  font-size: 1.25rem;
+  transition: color var(--transition-med);
+  animation: gentlePulse 3s infinite ease-in-out;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.tab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.tab-link:hover {
+  color: var(--text-universal);
+  border-color: var(--border-patina);
+  background: rgba(74, 63, 53, 0.25);
+}
+
+.tab-link.is-active {
+  color: var(--pantheon-accent);
+  border-color: var(--pantheon-accent);
+  background: rgba(22, 28, 46, 0.9);
+  box-shadow: 0 0 14px var(--pantheon-glow);
+  font-weight: 600;
+}
+
+.nav-spark-icon {
+  width: 15px;
+  height: 15px;
+  color: inherit;
+}
+
+.nav-utils {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-patina);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+  color: var(--text-universal);
+  border-color: var(--pantheon-accent);
+  box-shadow: 0 0 10px var(--pantheon-glow);
+}
+
+.icon-btn.is-active {
+  color: var(--pantheon-accent);
+  border-color: var(--pantheon-accent);
+}
+
+.audio-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.fate-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 18px;
+  border: 1px solid var(--border-patina);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.fate-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--pantheon-accent);
+}
+
+/* ==========================================================================
+   5. VIEWS CONTAINER
+   ========================================================================== */
+main {
+  position: relative;
+  min-height: calc(100vh - 160px);
+}
+
+.view {
+  display: none;
+}
+
+.view.is-active {
+  display: block;
+  animation: viewIn 0.4s ease both;
+}
+
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   6. VIEW 1: HOME & HERO
+   ========================================================================== */
+.hero {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 8vh 24px 7vh;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(74, 63, 53, 0.35);
+  border: 1px solid var(--border-patina);
+  margin-bottom: 22px;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pantheon-accent);
+  box-shadow: 0 0 8px var(--pantheon-glow);
+}
+
+.hero-eyebrow {
+  color: var(--text-universal);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.1;
+  color: var(--text-universal);
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  max-width: 680px;
+  margin: 0 auto 46px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.portals {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.portal {
+  flex: 1 1 230px;
+  max-width: 260px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 10px;
+  padding: 30px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  color: var(--text-universal);
+  transition: all var(--transition-med);
+}
+
+.portal:hover {
+  transform: translateY(-5px);
+  border-color: var(--pantheon-accent);
+  box-shadow: 0 8px 24px var(--pantheon-glow);
+  background: var(--bg-surface-elevated);
+}
+
+.portal-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(74, 63, 53, 0.4);
+  border: 1px solid var(--border-patina);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pantheon-accent);
+  transition: transform var(--transition-fast);
+}
+
+.portal:hover .portal-icon-wrap {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px var(--pantheon-glow);
+}
+
+.portal-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.portal-label {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.portal-sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.portal-arrow {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--pantheon-accent);
+}
+
+/* ==========================================================================
+   7. VIEW 2: STORYTELLING (7 MYTHOLOGIES, MULTI-STORIES & MOVING ART)
+   ========================================================================== */
+.stories-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 44px 24px 100px;
+}
+
+.stories-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.stories-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.stories-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* 7 Culture Navigation Tabs */
+.culture-nav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.culture-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.culture-tab svg {
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+}
+
+.culture-tab:hover {
+  color: var(--text-universal);
+  border-color: var(--border-patina-bright);
+}
+
+/* Culturally Accurate Active States */
+.culture-tab[data-culture="egypt"].is-active {
+  color: #E5A93B;
+  border-color: #E5A93B;
+  background: rgba(229, 169, 59, 0.14);
+  box-shadow: 0 0 16px rgba(229, 169, 59, 0.35);
+}
+
+.culture-tab[data-culture="greek"].is-active {
+  color: #CD7F32;
+  border-color: #CD7F32;
+  background: rgba(205, 127, 50, 0.14);
+  box-shadow: 0 0 16px rgba(205, 127, 50, 0.35);
+}
+
+.culture-tab[data-culture="aztec"].is-active {
+  color: #00A86B;
+  border-color: #B81D24;
+  background: rgba(184, 29, 36, 0.15);
+  box-shadow: 0 0 16px rgba(184, 29, 36, 0.4);
+}
+
+.culture-tab[data-culture="norse"].is-active {
+  color: #D45B12;
+  border-color: #78909C;
+  background: rgba(212, 91, 18, 0.15);
+  box-shadow: 0 0 16px rgba(212, 91, 18, 0.35);
+}
+
+.culture-tab[data-culture="westafrican"].is-active {
+  color: #FFBF00;
+  border-color: #C25A3F;
+  background: rgba(255, 191, 0, 0.14);
+  box-shadow: 0 0 16px rgba(255, 191, 0, 0.35);
+}
+
+.culture-tab[data-culture="japanese"].is-active {
+  color: #E63946;
+  border-color: #E63946;
+  background: rgba(230, 57, 70, 0.14);
+  box-shadow: 0 0 16px rgba(230, 57, 70, 0.35);
+}
+
+.culture-tab[data-culture="indian"].is-active {
+  color: #FF9933;
+  border-color: #FF9933;
+  background: rgba(255, 153, 51, 0.14);
+  box-shadow: 0 0 16px rgba(255, 153, 51, 0.4);
+}
+
+/* Story Sub-Selector Bar (Select different stories within the mythology) */
+.story-subnav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.story-pill-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.story-pill-btn:hover {
+  color: var(--text-universal);
+  border-color: var(--pantheon-accent);
+}
+
+.story-pill-btn.is-active {
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  border-color: var(--pantheon-accent);
+  box-shadow: 0 0 12px var(--pantheon-glow);
+}
+
+/* Showcase Card & Dynamic Cultural Theme Matrix */
+.story-showcase {
+  background: var(--bg-surface);
+  background-image: var(--bg-pattern);
+  border-width: 2px;
+  border-style: var(--border-style, solid);
+  border-color: var(--primary-color, var(--border-patina));
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.6), 0 0 25px var(--pantheon-glow);
+  transition: border-color var(--transition-med), box-shadow var(--transition-med), background-image var(--transition-med);
+  position: relative;
+}
+
+/* Indian: Marigold & Crimson with Mandala & Diya Glow */
+.story-showcase.glow-indian {
+  border-color: #FF9933;
+  border-style: solid;
+  box-shadow: 0 0 32px rgba(255, 153, 51, 0.35), 0 0 15px rgba(128, 0, 32, 0.25);
+}
+
+/* Greek: Aegean & Parian Marble with Fluted Pillar Double Border */
+.story-showcase.glow-greek {
+  border-color: #002366;
+  border-style: double;
+  border-width: 4px;
+  box-shadow: 0 0 32px rgba(0, 35, 102, 0.35), 0 0 16px rgba(245, 245, 220, 0.2);
+}
+
+/* Norse: Glacial Teal & Slate with Runic Groove Border */
+.story-showcase.glow-norse {
+  border-color: #008080;
+  border-style: groove;
+  border-width: 3px;
+  box-shadow: 0 0 32px rgba(0, 128, 128, 0.38), 0 0 16px rgba(28, 40, 51, 0.6);
+}
+
+/* Egyptian: Pyramid Gold & Lapis with Hieroglyphic Outset Border */
+.story-showcase.glow-egyptian, .story-showcase.glow-egypt {
+  border-color: #E5A823;
+  border-style: outset;
+  border-width: 3px;
+  box-shadow: 0 0 32px rgba(229, 168, 35, 0.38), 0 0 18px rgba(0, 168, 150, 0.25);
+}
+
+/* Aztec: Quetzal Jade & Obsidian with Stepped Ridge Border */
+.story-showcase.glow-aztec {
+  border-color: #00A86B;
+  border-style: ridge;
+  border-width: 3px;
+  box-shadow: 0 0 32px rgba(0, 168, 107, 0.38), 0 0 18px rgba(44, 62, 80, 0.5);
+}
+
+/* Japanese: Sakura & Sumi Ink with Brush Stroke Aesthetic */
+.story-showcase.glow-japanese {
+  border-color: #FFB7C5;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 0 30px rgba(255, 183, 197, 0.35), 0 0 18px rgba(17, 17, 17, 0.7);
+}
+
+/* Chinese: Vermilion & Imperial Jade with Scroll Inset Border */
+.story-showcase.glow-chinese {
+  border-color: #D90429;
+  border-style: inset;
+  border-width: 3px;
+  box-shadow: 0 0 35px rgba(217, 4, 41, 0.4), 0 0 20px rgba(0, 168, 107, 0.25);
+}
+
+/* Visual Stage & Mode Controls */
+.story-visual-container {
+  position: relative;
+  width: 100%;
+}
+
+.visual-mode-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--bg-surface-elevated);
+  border-bottom: 1px solid var(--border-patina);
+}
+
+.visual-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--border-patina);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.visual-mode-btn:hover {
+  color: var(--text-universal);
+  border-color: var(--pantheon-accent);
+}
+
+.visual-mode-btn.is-active {
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  border-color: var(--pantheon-accent);
+  box-shadow: 0 0 12px var(--pantheon-glow);
+}
+
+/* Visual Stage */
+.illustration-stage {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  background: linear-gradient(180deg, #070A12 0%, #111726 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-patina);
+}
+
+/* Archival Picture View with Cinematic Motion */
+.archival-picture-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #080D1A;
+}
+
+.archival-picture-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+  transform-origin: center center;
+}
+
+.kenburns-zoom {
+  animation: kenBurnsZoom 22s infinite alternate ease-in-out;
+}
+
+.kenburns-pan-left {
+  animation: kenBurnsPanLeft 26s infinite alternate ease-in-out;
+}
+
+.kenburns-pan-right {
+  animation: kenBurnsPanRight 24s infinite alternate ease-in-out;
+}
+
+@keyframes kenBurnsZoom {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.08) translate(-1%, -1.2%); }
+  100% { transform: scale(1.15) translate(1.2%, 1%); }
+}
+
+@keyframes kenBurnsPanLeft {
+  0% { transform: scale(1.08) translate(2.5%, 0); }
+  100% { transform: scale(1.16) translate(-3%, -1.5%); }
+}
+
+@keyframes kenBurnsPanRight {
+  0% { transform: scale(1.15) translate(-2.5%, 0); }
+  100% { transform: scale(1.08) translate(2.5%, -1.2%); }
+}
+
+/* Atmospheric Animated Light & Particle Layer */
+.atmospheric-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.2) 0%, rgba(11, 15, 25, 0.4) 60%, rgba(11, 15, 25, 0.85) 100%);
+}
+
+.overlay-shimmer {
+  position: absolute;
+  inset: 0;
+  background-size: 200% 200%;
+  animation: atmosphericPulse 8s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+.overlay-shimmer.egypt {
+  background: radial-gradient(circle at 65% 25%, rgba(229, 169, 59, 0.35) 0%, transparent 60%),
+              linear-gradient(180deg, transparent 40%, rgba(18, 12, 6, 0.75) 100%);
+}
+
+.overlay-shimmer.indian {
+  background: radial-gradient(circle at 50% 30%, rgba(255, 153, 51, 0.32) 0%, rgba(26, 54, 93, 0.35) 60%, transparent 80%),
+              linear-gradient(180deg, transparent 40%, rgba(8, 16, 30, 0.75) 100%);
+}
+
+.overlay-shimmer.greek {
+  background: radial-gradient(circle at 40% 20%, rgba(205, 127, 50, 0.28) 0%, rgba(0, 119, 153, 0.25) 55%, transparent 80%),
+              linear-gradient(180deg, transparent 40%, rgba(10, 20, 32, 0.75) 100%);
+}
+
+.overlay-shimmer.aztec {
+  background: radial-gradient(circle at 55% 35%, rgba(184, 29, 36, 0.35) 0%, rgba(0, 168, 107, 0.2) 65%, transparent 85%),
+              linear-gradient(180deg, transparent 40%, rgba(20, 6, 8, 0.8) 100%);
+}
+
+.overlay-shimmer.norse {
+  background: radial-gradient(circle at 50% 15%, rgba(120, 144, 156, 0.32) 0%, rgba(212, 91, 18, 0.22) 60%, transparent 80%),
+              linear-gradient(180deg, transparent 40%, rgba(10, 16, 26, 0.8) 100%);
+}
+
+.overlay-shimmer.westafrican {
+  background: radial-gradient(circle at 60% 30%, rgba(255, 191, 0, 0.32) 0%, rgba(194, 90, 63, 0.25) 60%, transparent 80%),
+              linear-gradient(180deg, transparent 40%, rgba(24, 14, 8, 0.8) 100%);
+}
+
+.overlay-shimmer.japanese {
+  background: radial-gradient(circle at 50% 25%, rgba(230, 57, 70, 0.3) 0%, rgba(251, 195, 188, 0.22) 50%, transparent 75%),
+              linear-gradient(180deg, transparent 40%, rgba(12, 16, 28, 0.8) 100%);
+}
+
+@keyframes atmosphericPulse {
+  0% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+  100% { opacity: 0.8; transform: scale(0.98); }
+}
+
+/* Archival Badges & Provenance */
+.archival-badge-wrap {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.archival-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 14px;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--pantheon-accent);
+  color: var(--text-universal);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.archival-badge svg {
+  width: 13px;
+  height: 13px;
+  color: var(--pantheon-accent);
+}
+
+.archival-caption-card {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  right: 16px;
+  z-index: 4;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(11, 15, 25, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 242, 235, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.archival-caption-text {
+  color: var(--text-universal);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.archival-source-tag {
+  font-size: 0.74rem;
+  color: var(--pantheon-accent);
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* SVG Illustration Stage View */
+.illustration-svg-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.illustration-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* Keyframe Animations & Specific Cultural Motifs */
+@keyframes waveUndulate { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes floatBoat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(1.2deg); } }
+@keyframes pulseSun { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.1); opacity: 1; } }
+@keyframes driftCloud { 0% { transform: translateX(-40px); } 100% { transform: translateX(60px); } }
+@keyframes flickerFlame { 0%, 100% { transform: scaleY(1) skewX(0deg); } 50% { transform: scaleY(1.15) skewX(3deg); } }
+@keyframes auroraShift { 0%, 100% { opacity: 0.45; transform: skewX(-4deg); } 50% { opacity: 0.85; transform: skewX(6deg); } }
+@keyframes petalFall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 0; } 20% { opacity: 0.9; } 100% { transform: translateY(220px) rotate(360deg); opacity: 0; } }
+@keyframes serpentCoil { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes oceanChurn { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes lotusBloom { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px #FF9933); } 50% { transform: scale(1.12); filter: drop-shadow(0 0 22px #FF9933); } }
+@keyframes featherDrift { 0% { transform: translate(0, -10px) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(30px, 180px) rotate(180deg); opacity: 0; } }
+
+/* Indian Cultural Motif: Mandala SVG Rotate & Glowing Diya */
+@keyframes mandalaRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes diyaGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px #FF9933) drop-shadow(0 0 18px rgba(128, 0, 32, 0.45));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px #FF9933) drop-shadow(0 0 35px rgba(255, 153, 51, 0.8));
+    transform: scale(1.04);
+  }
+}
+.mandala-rotate {
+  animation: mandalaRotate 28s linear infinite;
+  transform-origin: center;
+}
+.diya-glow {
+  animation: diyaGlow 2.8s infinite ease-in-out alternate;
+}
+
+/* Greek Cultural Motif: Aegean Wave Pulse & Fluted Borders */
+@keyframes wavePulse {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scaleY(1.08);
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(0, 35, 102, 0.65));
+  }
+}
+.wave-pulse {
+  animation: wavePulse 3.5s infinite ease-in-out;
+}
+
+/* Norse Cultural Motif: Rune Shimmer & Snow Particle Overlay */
+@keyframes runeShimmer {
+  0%, 100% {
+    opacity: 0.72;
+    filter: drop-shadow(0 0 6px #008080);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px #00E5FF) drop-shadow(0 0 28px #008080);
+  }
+}
+@keyframes snowDrift {
+  0% { transform: translateY(-20px) translateX(0); opacity: 0; }
+  20% { opacity: 0.9; }
+  100% { transform: translateY(320px) translateX(25px); opacity: 0; }
+}
+.rune-shimmer {
+  animation: runeShimmer 2.4s infinite ease-in-out alternate;
+}
+.snow-overlay {
+  animation: snowDrift 5s linear infinite;
+}
+
+/* Egyptian Cultural Motif: Hieroglyphic Golden Pulse */
+@keyframes goldenPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px #E5A823);
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 24px #E5A823) drop-shadow(0 0 36px #00A896);
+    opacity: 1;
+  }
+}
+.golden-pulse {
+  animation: goldenPulse 3s infinite ease-in-out;
+}
+
+/* Aztec Cultural Motif: Stepped-Pyramid Frame & Geometric Glow */
+@keyframes geometricGlow {
+  0%, 100% {
+    stroke: #00A86B;
+    filter: drop-shadow(0 0 6px #00A86B);
+  }
+  50% {
+    stroke: #F39C12;
+    filter: drop-shadow(0 0 20px #00A86B) drop-shadow(0 0 26px #2C3E50);
+  }
+}
+.geometric-glow {
+  animation: geometricGlow 2.8s infinite ease-in-out alternate;
+}
+
+/* Japanese Cultural Motif: Sakura Petal Drift & Brush Borders */
+@keyframes petalDriftAnim {
+  0% {
+    transform: translate(0, -20px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-90px, 340px) rotate(360deg);
+    opacity: 0;
+  }
+}
+.petal-drift {
+  animation: petalDriftAnim 6.5s linear infinite;
+}
+
+/* Chinese Cultural Motif: Scroll Unfold & Cloud/Dragon Float */
+@keyframes scrollUnfold {
+  0% {
+    clip-path: inset(0 50% 0 50%);
+    transform: scaleY(0.96);
+    opacity: 0.6;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes dragonFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 10px #D90429);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+    filter: drop-shadow(0 0 22px #00A86B) drop-shadow(0 0 14px #E5A93B);
+  }
+}
+.scroll-unfold {
+  animation: scrollUnfold 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.dragon-float {
+  animation: dragonFloat 4.2s infinite ease-in-out alternate;
+}
+
+/* Story Content Body */
+.story-content-wrap {
+  padding: 40px;
+}
+
+.story-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-patina);
+}
+
+.story-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.story-region-badge {
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--pantheon-accent);
+}
+
+.story-read-time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg-surface-elevated);
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-patina);
+}
+
+.story-main-title {
+  font-size: 2.1rem;
+  color: var(--text-universal);
+  margin-top: 4px;
+}
+
+/* Dramatic Pullquote */
+.story-pullquote {
+  position: relative;
+  margin: 0 0 28px 0;
+  padding: 18px 24px 18px 28px;
+  background: rgba(245, 242, 235, 0.03);
+  border-left: 4px solid var(--pantheon-accent);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-universal);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.story-pullquote::before {
+  content: "“";
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  font-size: 2.4rem;
+  color: var(--pantheon-accent);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.story-sound-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
+.story-text-body {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--text-universal);
+  max-width: 75ch;
+  margin-bottom: 36px;
+}
+
+.story-text-body p {
+  margin-bottom: 20px;
+}
+
+.lore-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 22px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  border-radius: 8px;
+}
+
+.lore-insight-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lore-insight-label {
+  font-size: 0.78rem;
+  color: var(--pantheon-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.lore-insight-val {
+  font-size: 0.96rem;
+  color: var(--text-universal);
+}
+
+/* ==========================================================================
+   8. VIEW 3: TRIAL GROUNDS (PROGRESSIVE MULTI-LEVEL MATCH & QUIZ)
+   ========================================================================== */
+.games-sub-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 40px 24px 0;
+}
+
+.pill-link {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  color: var(--text-muted);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 0.94rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.pill-link:hover {
+  color: var(--text-universal);
+  border-color: var(--border-patina-bright);
+}
+
+.pill-link.is-active {
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  border-color: var(--pantheon-accent);
+  font-weight: 700;
+  box-shadow: 0 0 16px var(--pantheon-glow);
+}
+
+.game-panel {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 34px 24px 100px;
+}
+
+.game-panel.is-active {
+  display: block;
+  animation: viewIn 0.4s ease both;
+}
+
+.game-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-patina);
+}
+
+.panel-heading {
+  font-size: 1.4rem;
+  color: var(--text-universal);
+  margin-bottom: 4px;
+}
+
+.panel-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.game-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.stat-pill strong {
+  color: var(--pantheon-accent);
+}
+
+.stat-level-pill {
+  background: rgba(74, 63, 53, 0.45);
+  border: 1px solid var(--pantheon-accent);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--pantheon-accent);
+}
+
+.mini-btn {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--text-universal);
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.mini-btn:hover {
+  border-color: var(--pantheon-accent);
+  color: var(--pantheon-accent);
+  box-shadow: 0 0 10px var(--pantheon-glow);
+}
+
+.match-level-tracker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 12px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 8px;
+}
+
+.match-level-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.level-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--border-patina);
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.level-dot.is-active {
+  border-color: var(--pantheon-accent);
+  color: #0B0F19;
+  background: var(--pantheon-accent);
+  box-shadow: 0 0 10px var(--pantheon-glow);
+}
+
+.level-dot.is-cleared {
+  border-color: #00A86B;
+  color: #00A86B;
+  background: rgba(0, 168, 107, 0.15);
+}
+
+.match-grid {
+  display: grid;
+  gap: 14px;
+  margin: 0 auto;
+}
+
+.match-grid.cols-3 { grid-template-columns: repeat(3, 1fr); max-width: 420px; }
+.match-grid.cols-4 { grid-template-columns: repeat(4, 1fr); max-width: 580px; }
+.match-grid.cols-5 { grid-template-columns: repeat(5, 1fr); max-width: 720px; }
+.match-grid.cols-6 { grid-template-columns: repeat(6, 1fr); max-width: 860px; }
+.match-grid.cols-7 { grid-template-columns: repeat(7, 1fr); max-width: 960px; }
+.match-grid.cols-8 { grid-template-columns: repeat(8, 1fr); max-width: 1040px; }
+
+.match-card {
+  aspect-ratio: 3/4;
+  perspective: 900px;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+
+.match-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.match-card.is-flipped .match-card-inner {
+  transform: rotateY(180deg);
+}
+
+.match-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-patina);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.match-card-back {
+  background: linear-gradient(155deg, var(--bg-surface-elevated), var(--bg-surface));
+  color: var(--pantheon-accent);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.match-card:hover .match-card-back {
+  border-color: var(--pantheon-accent);
+  box-shadow: 0 0 14px var(--pantheon-glow);
+}
+
+.match-card-front {
+  background: var(--bg-surface-elevated);
+  color: var(--text-universal);
+  transform: rotateY(180deg);
+  border-color: var(--border-patina-bright);
+}
+
+.match-card-front svg {
+  width: 44%;
+  height: 44%;
+}
+
+.match-card.is-matched .match-card-front {
+  background: rgba(0, 168, 107, 0.25);
+  border-color: #00A86B;
+  color: #72f2c4;
+  box-shadow: 0 0 16px rgba(0, 168, 107, 0.35);
+  animation: matchPulse 0.4s ease;
+}
+
+@keyframes matchPulse {
+  0% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.08); }
+  100% { transform: rotateY(180deg) scale(1); }
+}
+
+.win-banner {
+  text-align: center;
+  margin-top: 32px;
+  padding: 26px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--pantheon-accent);
+  border-radius: 10px;
+  box-shadow: 0 0 24px var(--pantheon-glow);
+  animation: viewIn 0.4s ease both;
+}
+
+.level-advance-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.level-advance-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--pantheon-glow);
+}
+
+/* Quiz Controls */
+.quiz-timer-track {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  height: 6px;
+  background: var(--bg-surface-elevated);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.quiz-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #00A86B, var(--pantheon-accent), #B81D24);
+  transform-origin: left;
+}
+
+.quiz-question {
+  font-size: 1.25rem;
+  color: var(--text-universal);
+  margin-bottom: 22px;
+  max-width: 70ch;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 12px;
+}
+
+.quiz-option {
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  color: var(--text-universal);
+  padding: 16px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.quiz-option:hover:not([disabled]) {
+  border-color: var(--pantheon-accent);
+  background: var(--bg-surface-elevated);
+  transform: translateX(4px);
+}
+
+.quiz-option.is-correct {
+  border-color: #00A86B !important;
+  background: rgba(0, 168, 107, 0.28) !important;
+  color: #8af7cf !important;
+  font-weight: 600;
+}
+
+.quiz-option.is-wrong {
+  border-color: #B81D24 !important;
+  background: rgba(184, 29, 36, 0.28) !important;
+  color: #ff9da1 !important;
+}
+
+.quiz-explain {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: var(--bg-surface-elevated);
+  border-left: 3px solid var(--pantheon-accent);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-muted);
+  font-size: 0.94rem;
+}
+
+.quiz-next {
+  margin-top: 22px;
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.quiz-result {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quiz-result h3 {
+  font-size: 2.3rem;
+  color: var(--pantheon-accent);
+  margin-bottom: 8px;
+}
+
+.quiz-rank-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 20px;
+  background: rgba(74, 63, 53, 0.4);
+  border: 1px solid var(--pantheon-accent);
+  color: var(--pantheon-accent);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 12px 0 20px;
+}
+
+.quiz-retry {
+  display: inline-block;
+  background: none;
+  border: 1px solid var(--pantheon-accent);
+  color: var(--pantheon-accent);
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.quiz-retry:hover {
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+}
+
+/* ==========================================================================
+   9. VIEW 4: LEGENDARY CREATURE CROSSWORDS (DIGITAL & PRINTABLE)
+   ========================================================================== */
+.crossword-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 44px 24px 100px;
+}
+
+.crossword-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 30px;
+}
+
+.crossword-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-top: 8px;
+}
+
+.crossword-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-top: 10px;
+}
+
+/* 5-Level Crossword Navigation Tabs */
+.crossword-level-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.cw-level-tab {
+  flex: 1 1 180px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.cw-level-tab:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--pantheon-accent);
+  transform: translateY(-2px);
+}
+
+.cw-level-tab.is-active {
+  border-color: var(--pantheon-accent);
+  background: rgba(229, 169, 59, 0.08);
+  box-shadow: 0 0 14px var(--pantheon-glow);
+}
+
+.cw-level-tab.is-solved .cw-tab-lvl::after {
+  content: " ✓ Solved";
+  color: #00E676;
+  font-size: 0.72rem;
+  margin-left: 6px;
+}
+
+.cw-tab-lvl {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pantheon-accent);
+  font-weight: 700;
+}
+
+.cw-tab-title {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--text-parchment);
+}
+
+.cw-tab-stars {
+  font-size: 0.8rem;
+  color: var(--pantheon-accent);
+  letter-spacing: 2px;
+}
+
+.cw-tab-expedition {
+  border-left: 3px solid var(--pantheon-accent);
+}
+
+.cw-tab-expedition .cw-tab-lvl {
+  color: #FFD54F;
+}
+
+/* Crossword Active Level Metadata Card */
+.crossword-meta-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-left: 4px solid var(--pantheon-accent);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cw-meta-title {
+  font-size: 1.25rem;
+  margin: 0 0 4px;
+  color: var(--text-parchment);
+  font-family: var(--font-cinzel);
+}
+
+.cw-meta-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.cw-meta-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cw-badge {
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--text-parchment);
+  font-weight: 500;
+}
+
+.cw-badge-traditions {
+  border-color: var(--pantheon-accent);
+  color: var(--pantheon-accent);
+}
+
+.crossword-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.crossword-tools-left, .crossword-tools-right {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.crossword-split-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Crossword Board Matrix */
+.crossword-board-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.crossword-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 36px);
+  grid-template-rows: repeat(15, 36px);
+  gap: 2px;
+  background: var(--border-patina);
+  padding: 4px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.cw-cell {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  background: var(--bg-primary);
+}
+
+.cw-cell.active-cell {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+}
+
+.cw-cell.active-cell:hover {
+  background: rgba(74, 63, 53, 0.5);
+}
+
+.cw-cell.highlight-clue {
+  background: rgba(229, 169, 59, 0.22);
+}
+
+.cw-cell.selected-cursor {
+  background: rgba(229, 169, 59, 0.45) !important;
+  border-color: var(--pantheon-accent);
+}
+
+.cw-cell.is-revealed {
+  animation: tileRevealFlash 0.9s ease-out;
+}
+
+@keyframes tileRevealFlash {
+  0% { background-color: var(--pantheon-accent); transform: scale(1.15); }
+  50% { background-color: rgba(229, 169, 59, 0.5); }
+  100% { background-color: var(--bg-surface-elevated); transform: scale(1); }
+}
+
+.cw-cell-num {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: 9px;
+  color: var(--pantheon-accent);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.cw-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-universal);
+  text-transform: uppercase;
+  caret-color: var(--pantheon-accent);
+  cursor: pointer;
+  padding: 0;
+  padding-top: 6px;
+}
+
+.cw-input:focus {
+  outline: none;
+}
+
+.cw-input.is-correct {
+  color: #72f2c4;
+}
+
+.cw-input.is-wrong {
+  color: #ff9da1;
+  background: rgba(184, 29, 36, 0.25);
+}
+
+/* Across & Down Clues Column */
+.crossword-clues-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.clue-col-title {
+  font-size: 1.15rem;
+  color: var(--pantheon-accent);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-patina);
+  margin-bottom: 12px;
+}
+
+.clues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clue-item {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.clue-item:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--text-universal);
+  border-color: var(--border-patina);
+}
+
+.clue-item.is-selected {
+  background: rgba(229, 169, 59, 0.16);
+  border-color: var(--pantheon-accent);
+  color: var(--text-universal);
+  font-weight: 600;
+}
+
+.clue-num {
+  font-weight: 700;
+  color: var(--pantheon-accent);
+  margin-right: 4px;
+}
+
+.clue-origin-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--pantheon-accent);
+  margin-left: 4px;
+}
+
+/* Printable Pen-and-Paper CSS Rules */
+.print-only-header {
+  display: none;
+}
+
+@media print {
+  body:not(.printing-myth-card) {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body:not(.printing-myth-card) .site-nav, 
+  body:not(.printing-myth-card) .site-footer, 
+  body:not(.printing-myth-card) .crossword-toolbar, 
+  body:not(.printing-myth-card) .crossword-header .hero-badge, 
+  body:not(.printing-myth-card) .crossword-header .crossword-sub, 
+  body:not(.printing-myth-card) #hero-canvas {
+    display: none !important;
+  }
+  body:not(.printing-myth-card) .view:not(#crossword) {
+    display: none !important;
+  }
+  body:not(.printing-myth-card) #crossword {
+    display: block !important;
+  }
+  .crossword-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .print-only-header {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .print-only-header h1 {
+    font-size: 24px;
+    color: #000;
+  }
+  .crossword-split-layout {
+    display: block !important;
+  }
+  .crossword-board-wrap {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+  }
+  .crossword-grid {
+    background: #000 !important;
+  }
+  .cw-cell {
+    background: #000 !important;
+  }
+  .cw-cell.active-cell {
+    background: #fff !important;
+  }
+  .cw-cell-num {
+    color: #000 !important;
+  }
+  .cw-input {
+    color: transparent !important;
+  }
+  .crossword-clues-wrap {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .clue-col-title {
+    color: #000 !important;
+    border-color: #999 !important;
+  }
+  .clue-item {
+    color: #000 !important;
+  }
+  .clue-origin-tag {
+    border: 1px solid #999 !important;
+    color: #333 !important;
+  }
+}
+
+/* ==========================================================================
+   10. VIEW 5: MYTHOS SPARK (CREATIVE STORY FORGE)
+   ========================================================================== */
+.spark-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 44px 24px 100px;
+}
+
+.spark-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 34px;
+}
+
+.spark-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-top: 8px;
+}
+
+.spark-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-top: 10px;
+}
+
+.spark-forge-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 12px;
+  padding: 36px;
+  box-shadow: var(--shadow-md);
+}
+
+.forge-selectors {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.forge-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.forge-label {
+  font-size: 0.84rem;
+  color: var(--pantheon-accent);
+  font-weight: 600;
+}
+
+.forge-select {
+  width: 100%;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--text-universal);
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.94rem;
+  cursor: pointer;
+}
+
+.forge-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.spark-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px var(--pantheon-glow);
+  transition: all var(--transition-fast);
+}
+
+.spark-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px var(--pantheon-glow);
+}
+
+.spark-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--text-universal);
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 0.96rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.spark-btn-secondary:hover {
+  border-color: var(--pantheon-accent);
+  color: var(--pantheon-accent);
+}
+
+.forge-result-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--pantheon-accent);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 0 24px var(--pantheon-glow);
+  animation: viewIn 0.4s ease both;
+}
+
+.forge-tag {
+  display: inline-block;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pantheon-accent);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.forge-result-title {
+  font-size: 1.6rem;
+  color: var(--text-universal);
+  margin-bottom: 12px;
+}
+
+.forge-result-lore {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-universal);
+  margin-bottom: 22px;
+}
+
+.forge-result-prompt-wrap {
+  background: rgba(11, 15, 25, 0.7);
+  border: 1px solid var(--border-patina);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 22px;
+}
+
+.prompt-badge {
+  display: inline-block;
+  font-size: 0.76rem;
+  color: var(--pantheon-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.forge-result-prompt {
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--text-universal);
+  margin: 0;
+}
+
+.forge-card-footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.saved-sparks-section {
+  margin-top: 44px;
+}
+
+.saved-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.saved-header h3 {
+  font-size: 1.25rem;
+  color: var(--text-universal);
+  margin: 0;
+}
+
+.codex-export-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.saved-sparks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+
+.no-sparks-notice {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-muted);
+  padding: 28px;
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-patina);
+  border-radius: 8px;
+}
+
+.saved-spark-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.saved-spark-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--pantheon-accent);
+}
+
+.saved-spark-title {
+  font-size: 1.05rem;
+  color: var(--pantheon-accent);
+  font-family: var(--font-display);
+}
+
+.saved-spark-prompt {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.saved-spark-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  border-top: 1px dashed rgba(74, 63, 53, 0.5);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.saved-spark-action-btn {
+  background: transparent;
+  border: 1px solid var(--border-patina);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.76rem;
+  color: var(--text-parchment);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.saved-spark-action-btn:hover {
+  border-color: var(--pantheon-accent);
+  color: var(--pantheon-accent);
+}
+
+.saved-spark-del {
+  color: #B81D24;
+  font-size: 0.78rem;
+  padding: 3px 6px;
+  border-color: rgba(184, 29, 36, 0.4);
+}
+
+.saved-spark-del:hover {
+  border-color: #B81D24;
+  color: #FF6B6B;
+}
+
+/* ==========================================================================
+   PRINTABLE STYLIZED MYTH CARD (ANCIENT PARCHMENT EXPORT)
+   ========================================================================== */
+.printable-myth-card-container {
+  display: none;
+}
+
+body.printing-myth-card {
+  background: #F5F0E6 !important;
+  color: #1F1914 !important;
+}
+
+body.printing-myth-card .site-nav,
+body.printing-myth-card .site-footer,
+body.printing-myth-card .view,
+body.printing-myth-card #hero-canvas,
+body.printing-myth-card .story-modal-backdrop {
+  display: none !important;
+}
+
+body.printing-myth-card .printable-myth-card-container {
+  display: block !important;
+  padding: 32px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.myth-card-parchment {
+  background: #FAF7F0;
+  border: 4px double #4A3F35;
+  border-radius: 8px;
+  padding: 34px 38px;
+  margin-bottom: 30px;
+  page-break-inside: avoid;
+  box-shadow: none;
+  position: relative;
+}
+
+.myth-card-parchment::before {
+  content: "✦ VEILWEAVE CODEX • LORE ARTIFACT ✦";
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: #8C7355;
+  margin-bottom: 14px;
+}
+
+.myth-card-header {
+  border-bottom: 1px solid #D1C7BD;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.myth-card-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: #2B1E12;
+  margin: 0 0 6px 0;
+  text-align: center;
+}
+
+.myth-card-badge {
+  display: block;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #7A5C2E;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.myth-card-lore {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #382E25;
+  margin-bottom: 22px;
+  text-align: justify;
+}
+
+.myth-card-prompt-box {
+  background: #EFE9DC;
+  border-left: 4px solid #C49746;
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.myth-card-prompt-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8C6228;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.myth-card-prompt-text {
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: #1F1914;
+  margin: 0;
+}
+
+.myth-card-footer-mark {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: #8C7E72;
+  border-top: 1px dashed #D1C7BD;
+  padding-top: 12px;
+  margin-top: 18px;
+}
+
+/* ==========================================================================
+   11. FOOTER
+   Clean, timeless branding.
+   ========================================================================== */
+.site-footer {
+  text-align: center;
+  padding: 36px 24px;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--border-patina);
+  background: var(--bg-nav);
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-brand {
+  color: var(--text-universal);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.footer-credit strong {
+  color: var(--pantheon-accent);
+}
+
+/* ==========================================================================
+   11B. CONTINUOUS AMBIENT SOUNDSCAPE & DRONE CONTROLS
+   ========================================================================== */
+.drone-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--border-patina);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.drone-nav-btn:hover {
+  color: var(--text-universal);
+  border-color: var(--pantheon-accent);
+}
+
+.drone-nav-btn.is-active {
+  background: rgba(229, 169, 59, 0.15);
+  border-color: var(--pantheon-accent);
+  color: var(--pantheon-accent);
+  box-shadow: 0 0 14px var(--pantheon-glow);
+}
+
+.drone-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #78909C;
+  display: inline-block;
+  transition: all var(--transition-fast);
+}
+
+.drone-nav-btn.is-active .drone-pulse-dot,
+.cust-btn-drone.is-active .drone-pulse-dot {
+  background: #00E676;
+  box-shadow: 0 0 8px #00E676;
+  animation: dronePulse 1.6s infinite ease-in-out;
+}
+
+@keyframes dronePulse {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* ==========================================================================
+   11C. STORY NARRATION TOOLBAR & WEB SPEECH API
+   ========================================================================== */
+.story-actions-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.narration-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.narration-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--pantheon-accent);
+  color: var(--text-universal);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.narration-btn:hover {
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  box-shadow: 0 0 14px var(--pantheon-glow);
+}
+
+.narration-btn.is-speaking {
+  background: var(--pantheon-accent);
+  color: #0B0F19;
+  animation: speakingPulse 1.8s infinite ease-in-out;
+}
+
+.narration-btn.is-paused {
+  background: rgba(229, 169, 59, 0.2);
+  border-color: var(--pantheon-accent);
+  color: var(--text-universal);
+}
+
+.narration-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.6);
+}
+
+@keyframes speakingPulse {
+  0%, 100% { box-shadow: 0 0 8px var(--pantheon-glow); }
+  50% { box-shadow: 0 0 20px var(--pantheon-glow); }
+}
+
+.narration-btn-stop {
+  border-color: rgba(184, 29, 36, 0.7);
+  color: #F5F2EB;
+}
+.narration-btn-stop:hover {
+  background: #B81D24;
+  color: #FFF;
+  box-shadow: 0 0 12px rgba(184, 29, 36, 0.4);
+}
+
+.story-modal-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid var(--border-patina);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.story-modal-open-btn:hover {
+  color: var(--text-universal);
+  border-color: var(--border-patina-bright);
+}
+
+.narration-status {
+  font-size: 0.82rem;
+  color: var(--pantheon-accent);
+  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Fullscreen Story Reading Modal */
+.story-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 10, 18, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: opacity 0.3s ease;
+}
+
+.story-modal-backdrop.is-hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.story-modal-dialog {
+  width: 100%;
+  max-width: 860px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--pantheon-accent);
+  border-radius: 14px;
+  box-shadow: 0 0 45px var(--pantheon-glow), 0 20px 60px rgba(0, 0, 0, 0.8);
+  padding: 36px;
+  position: relative;
+  animation: modalEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: translateY(22px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-patina);
+}
+
+.modal-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-close-btn {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  color: var(--text-universal);
+  border-color: var(--pantheon-accent);
+  background: rgba(229, 169, 59, 0.15);
+}
+
+.modal-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 2.2rem;
+  color: var(--text-universal);
+  margin: 0;
+}
+
+.modal-audio-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-story-text {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   11D. EDUCATIONAL SHOWCASE: WHAT MYTHOLOGY & FOLKLORE MEAN
+   ========================================================================== */
+.lore-education-section {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.lore-edu-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 36px auto;
+}
+
+.lore-edu-title {
+  font-size: 2.2rem;
+  font-family: var(--font-display);
+  color: var(--text-universal);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.lore-edu-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.lore-edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.lore-edu-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-patina);
+  border-radius: 14px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med);
+  position: relative;
+  overflow: hidden;
+}
+
+.lore-edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--pantheon-accent), transparent);
+  opacity: 0.7;
+}
+
+.lore-edu-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--pantheon-accent);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px var(--pantheon-glow);
+}
+
+.lore-edu-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-patina);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--pantheon-accent);
+}
+
+.lore-edu-card-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.lore-edu-tag {
+  display: inline-block;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--pantheon-accent);
+  margin-bottom: 8px;
+}
+
+.lore-edu-card-title {
+  font-size: 1.35rem;
+  font-family: var(--font-display);
+  color: var(--text-universal);
+  margin: 0 0 12px 0;
+}
+
+.lore-edu-desc {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--text-universal);
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.lore-edu-points {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid rgba(245, 242, 235, 0.08);
+  padding-top: 18px;
+}
+
+.lore-edu-points li {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.lore-edu-points li strong {
+  color: var(--text-universal);
+}
+
+/* Card-specific highlights */
+.edu-card-mythology {
+  border-top: 3px solid #FF9933;
+}
+.edu-card-folklore {
+  border-top: 3px solid #00A896;
+}
+.edu-card-synthesis {
+  border-top: 3px solid #D90429;
+}
+
+/* ==========================================================================
+   12. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 960px) {
+  .lore-edu-grid {
+    grid-template-columns: 1fr;
+  }
+  .crossword-split-layout {
+    grid-template-columns: 1fr;
+  }
+  .crossword-board-wrap {
+    overflow-x: auto;
+  }
+  .forge-selectors {
+    grid-template-columns: 1fr;
+  }
+  .story-content-wrap {
+    padding: 26px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-nav {
+    padding: 12px 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .tab-link {
+    padding: 6px 12px;
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+  .culture-tab {
+    padding: 8px 14px;
+    font-size: 0.86rem;
+  }
+  .illustration-stage {
+    height: 280px;
+  }
+  .archival-caption-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 8px 12px;
+    font-size: 0.76rem;
+  }
+  .archival-caption-text {
+    white-space: normal;
+  }
+  .visual-mode-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+  .visual-mode-btn {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+  }
+  .crossword-clues-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .match-grid.cols-6,
+  .match-grid.cols-7,
+  .match-grid.cols-8 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .match-grid.cols-3,
+  .match-grid.cols-4,
+  .match-grid.cols-5,
+  .match-grid.cols-6,
+  .match-grid.cols-7,
+  .match-grid.cols-8 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .hero-title {
+    font-size: 2.1rem;
+  }
+  .stories-title {
+    font-size: 2rem;
+  }
+  .crossword-board-wrap {
+    overflow-x: auto;
+    padding: 10px;
+  }
+  .cw-cell {
+    width: 26px;
+    height: 26px;
+  }
+  .cw-input {
+    font-size: 12px;
+    padding-top: 3px;
+  }
+}
+
+/* ==========================================================================
+   FEATURE A: CHIPTUNE MELODY SYNTHESIZER BUTTON
+   ========================================================================== */
+.cust-btn-melody {
+  background: linear-gradient(135deg, rgba(229, 169, 59, 0.18), rgba(0, 119, 153, 0.18));
+  border: 1px solid var(--pantheon-accent, #E5A93B);
+  color: var(--color-parchment, #F5F2EB);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cust-btn-melody:hover {
+  background: var(--pantheon-accent, #E5A93B);
+  color: #0B0F19;
+  box-shadow: 0 0 16px var(--pantheon-glow, rgba(229, 169, 59, 0.45));
+  transform: translateY(-2px);
+}
+
+.cust-btn-melody.is-playing {
+  animation: pulseMelody 0.6s infinite alternate ease-in-out;
+  background: var(--pantheon-accent, #E5A93B);
+  color: #0B0F19;
+}
+
+@keyframes pulseMelody {
+  0% { transform: scale(1); box-shadow: 0 0 8px var(--pantheon-glow, rgba(229, 169, 59, 0.4)); }
+  100% { transform: scale(1.04); box-shadow: 0 0 22px var(--pantheon-glow, rgba(229, 169, 59, 0.7)); }
+}
+
+/* ==========================================================================
+   FEATURE B: INTERACTIVE MYTHIC ARTIFACT RELIC MUSEUM (3D PERSPECTIVE)
+   ========================================================================== */
+.relic-treasury-section {
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid var(--pantheon-glow, rgba(229, 169, 59, 0.25));
+}
+
+.relic-treasury-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 32px;
+}
+
+.relic-treasury-title {
+  font-family: 'Cinzel', 'Cinzel Decorative', serif;
+  font-size: 2rem;
+  color: var(--color-parchment, #F5F2EB);
+  margin: 12px 0 8px;
+  letter-spacing: 0.04em;
+}
+
+.relic-treasury-sub {
+  font-size: 0.95rem;
+  color: rgba(245, 242, 235, 0.75);
+  line-height: 1.6;
+}
+
+.relic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  perspective: 1000px;
+  margin-bottom: 28px;
+}
+
+.relic-3d-card {
+  position: relative;
+  background: rgba(14, 18, 28, 0.82);
+  border: 1px solid rgba(74, 63, 53, 0.6);
+  border-radius: 12px;
+  padding: 22px 18px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.relic-3d-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--pantheon-accent, #E5A93B));
+  opacity: 0.8;
+}
+
+.relic-3d-card:hover,
+.relic-3d-card.is-active {
+  border-color: var(--card-accent, var(--pantheon-accent, #E5A93B));
+  box-shadow: 0 12px 32px var(--card-glow, rgba(229, 169, 59, 0.35));
+}
+
+.relic-pedestal-glow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--card-glow, rgba(229, 169, 59, 0.25)) 0%, transparent 70%);
+  top: 40px;
+  z-index: 0;
+  pointer-events: none;
+  animation: pulsePedestal 4s infinite ease-in-out alternate;
+}
+
+@keyframes pulsePedestal {
+  0% { transform: scale(0.9); opacity: 0.4; }
+  100% { transform: scale(1.15); opacity: 0.8; }
+}
+
+.relic-svg-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 10px auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(35px);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+  transition: transform 0.2s ease;
+  z-index: 1;
+}
+
+.relic-svg-wrap svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.relic-3d-card:hover .relic-svg-wrap svg {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.relic-culture-badge {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--card-accent, var(--pantheon-accent, #E5A93B));
+  font-weight: 700;
+  margin-bottom: 6px;
+  transform: translateZ(20px);
+}
+
+.relic-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--color-parchment, #F5F2EB);
+  margin: 0 0 4px;
+  line-height: 1.3;
+  transform: translateZ(25px);
+}
+
+.relic-sub {
+  font-size: 0.82rem;
+  color: rgba(245, 242, 235, 0.65);
+  font-style: italic;
+  margin-bottom: 12px;
+  transform: translateZ(15px);
+}
+
+.relic-inspect-btn {
+  margin-top: auto;
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(245, 242, 235, 0.2);
+  border-radius: 20px;
+  color: var(--color-parchment, #F5F2EB);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  transform: translateZ(18px);
+}
+
+.relic-3d-card:hover .relic-inspect-btn {
+  background: var(--card-accent, var(--pantheon-accent, #E5A93B));
+  color: #0B0F19;
+  border-color: transparent;
+}
+
+/* Detailed Relic Inspector Card */
+.relic-inspector-card {
+  background: linear-gradient(145deg, rgba(16, 22, 34, 0.95), rgba(11, 15, 25, 0.98));
+  border: 1px solid var(--pantheon-accent, #E5A93B);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px var(--pantheon-glow, rgba(229, 169, 59, 0.3));
+  backdrop-filter: blur(14px);
+  margin-top: 20px;
+  animation: fadeInInspector 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInInspector {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.relic-insp-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.relic-insp-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 12, 20, 0.6);
+  border: 1px solid rgba(74, 63, 53, 0.5);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.relic-insp-visual svg {
+  width: 160px;
+  height: 160px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+}
+
+.relic-insp-content h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: var(--color-parchment, #F5F2EB);
+  margin: 0 0 6px;
+}
+
+.relic-insp-culture {
+  font-size: 0.82rem;
+  color: var(--pantheon-accent, #E5A93B);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.relic-insp-desc {
+  font-size: 0.96rem;
+  color: rgba(245, 242, 235, 0.88);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.relic-insp-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.relic-meta-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.relic-meta-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--pantheon-accent, #E5A93B);
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+}
+
+.relic-meta-val {
+  font-size: 0.88rem;
+  color: var(--color-parchment, #F5F2EB);
+}
+
+.relic-insp-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   FEATURE D: INTERACTIVE CHOICE-BASED SHORT STORY VIGNETTE (MINI RPG MODE)
+   ========================================================================== */
+.spark-btn-vignette {
+  background: linear-gradient(135deg, rgba(229, 169, 59, 0.25), rgba(192, 57, 43, 0.25)) !important;
+  border-color: var(--pantheon-accent, #E5A93B) !important;
+  color: var(--color-parchment, #F5F2EB) !important;
+  font-weight: 700 !important;
+}
+
+.spark-btn-vignette:hover {
+  background: var(--pantheon-accent, #E5A93B) !important;
+  color: #0B0F19 !important;
+  box-shadow: 0 0 16px var(--pantheon-glow, rgba(229, 169, 59, 0.5)) !important;
+}
+
+.vignette-quest-container {
+  margin-top: 28px;
+  background: linear-gradient(145deg, rgba(14, 20, 32, 0.95), rgba(9, 12, 20, 0.98));
+  border: 1px solid var(--pantheon-accent, #E5A93B);
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px var(--pantheon-glow, rgba(229, 169, 59, 0.35));
+  backdrop-filter: blur(12px);
+  animation: fadeInInspector 0.4s ease;
+}
+
+.vignette-quest-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.vignette-quest-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.65rem;
+  color: var(--color-parchment, #F5F2EB);
+  margin: 10px 0 14px;
+}
+
+.vignette-progress-bar {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.vignette-progress-step {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(245, 242, 235, 0.6);
+  transition: all 0.3s ease;
+}
+
+.vignette-progress-step.is-active {
+  background: var(--pantheon-accent, #E5A93B);
+  color: #0B0F19;
+  border-color: transparent;
+  box-shadow: 0 0 12px var(--pantheon-glow, rgba(229, 169, 59, 0.5));
+}
+
+.vignette-progress-step.is-completed {
+  background: rgba(0, 230, 118, 0.15);
+  border-color: #00E676;
+  color: #00E676;
+}
+
+.vignette-stage-card {
+  background: rgba(8, 12, 20, 0.65);
+  border: 1px solid rgba(74, 63, 53, 0.6);
+  border-radius: 10px;
+  padding: 22px;
+}
+
+.vignette-narrative-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(245, 242, 235, 0.95);
+  margin-bottom: 22px;
+}
+
+.vignette-choices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.vignette-choice-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(74, 63, 53, 0.8);
+  border-radius: 8px;
+  padding: 16px 18px;
+  color: var(--color-parchment, #F5F2EB);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vignette-choice-btn:hover {
+  background: rgba(229, 169, 59, 0.12);
+  border-color: var(--pantheon-accent, #E5A93B);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.vignette-choice-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--pantheon-accent, #E5A93B);
+  letter-spacing: 0.08em;
+}
+
+.vignette-choice-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.vignette-choice-sub {
+  font-size: 0.82rem;
+  color: rgba(245, 242, 235, 0.65);
+}
+
+/* Vignette Ending Card */
+.vignette-ending-card {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.vignette-badge-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  background: radial-gradient(circle, var(--pantheon-glow, rgba(229, 169, 59, 0.4)) 0%, rgba(20, 24, 36, 0.9) 70%);
+  border: 2px solid var(--pantheon-accent, #E5A93B);
+  box-shadow: 0 0 24px var(--pantheon-glow, rgba(229, 169, 59, 0.6));
+  animation: pulseBadge 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulseBadge {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1.08); }
+}
+
+.vignette-ending-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  color: var(--color-parchment, #F5F2EB);
+  margin-bottom: 8px;
+}
+
+.vignette-ending-badge-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--pantheon-accent, #E5A93B);
+  margin-bottom: 16px;
+}
+
+.vignette-ending-lore {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(245, 242, 235, 0.9);
+  max-width: 720px;
+  margin: 0 auto 24px;
+}
+
+.vignette-ending-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .relic-insp-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .relic-insp-actions {
+    justify-content: center;
+  }
+  .vignette-choices-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
